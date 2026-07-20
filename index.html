@@ -274,6 +274,7 @@
     padding: 24px;
     opacity: 0; pointer-events: none;
     transition: opacity 0.28s ease;
+    cursor: pointer;
   }
   .modal-overlay.is-open { opacity: 1; pointer-events: auto; }
   .modal {
@@ -443,7 +444,7 @@
       flex: 1;
       -webkit-overflow-scrolling: touch;
     }
-    .modal-close { top: 14px; right: 14px; width: 36px; height: 36px; }
+    .modal-close { top: 10px; right: 10px; width: 44px; height: 44px; }
     .modal-video { border-radius: 12px; margin: 14px 0; }
     .modal-title { font-size: 20px; }
     .modal-desc { font-size: 14px; }
@@ -1624,7 +1625,7 @@ function handleSubmit(e) {
 
 // Modal logic
 function _lockScroll(e) {
-  if (!e.target.closest('.modal-body')) e.preventDefault();
+  if (!e.target.closest('.modal')) e.preventDefault();
 }
 function openModal(id) {
   const overlay = document.getElementById(id);
