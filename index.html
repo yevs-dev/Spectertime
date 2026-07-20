@@ -1366,6 +1366,7 @@
         </div>
       </div>
     </div>
+    </div><!-- end story-scroll-area -->
   </div>
 </div>
 
@@ -1409,7 +1410,6 @@
       </div>
     </div>
   </div>
-  </div><!-- end story-scroll-area -->
 </div>
 
 <!-- Modal 2: CRM Automation -->
@@ -1622,18 +1622,14 @@ function handleSubmit(e) {
   btn.disabled = true;
 }
 
-// Modal logic — iOS-safe scroll lock
-let _modalScrollY = 0;
+// Modal logic
 function openModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
-  _modalScrollY = window.scrollY;
   const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
   document.body.style.paddingRight = scrollbarWidth + 'px';
-  document.querySelector('nav').style.paddingRight = scrollbarWidth + 'px';
-  document.body.style.position = 'fixed';
-  document.body.style.top = `-${_modalScrollY}px`;
-  document.body.style.width = '100%';
+  const nav = document.querySelector('nav');
+  if (nav) nav.style.paddingRight = scrollbarWidth + 'px';
   document.body.classList.add('modal-is-open');
   overlay.classList.add('is-open');
   overlay.querySelectorAll('iframe[data-src]').forEach(f => {
@@ -1647,12 +1643,9 @@ function closeModal(id) {
   overlay.querySelectorAll('iframe').forEach(f => { f.src = ''; });
   setTimeout(() => {
     document.body.classList.remove('modal-is-open');
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
     document.body.style.paddingRight = '';
-    document.querySelector('nav').style.paddingRight = '';
-    window.scrollTo(0, _modalScrollY);
+    const nav = document.querySelector('nav');
+    if (nav) nav.style.paddingRight = '';
   }, 300);
 }
 document.addEventListener('keydown', e => {
