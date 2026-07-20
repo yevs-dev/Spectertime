@@ -224,8 +224,7 @@
   }
 
   /* CARD HOVER OVERLAY + WATCH BUTTON */
-  html.modal-is-open,
-  html.modal-is-open body {
+  body.modal-is-open {
     overflow: hidden !important;
   }
   .modal-body { overscroll-behavior: contain; }
@@ -1636,7 +1635,6 @@ function openModal(id) {
   document.body.style.top = `-${_modalScrollY}px`;
   document.body.style.width = '100%';
   document.body.classList.add('modal-is-open');
-  document.documentElement.classList.add('modal-is-open');
   overlay.classList.add('is-open');
   overlay.querySelectorAll('iframe[data-src]').forEach(f => {
     f.src = f.dataset.src;
@@ -1649,7 +1647,6 @@ function closeModal(id) {
   overlay.querySelectorAll('iframe').forEach(f => { f.src = ''; });
   setTimeout(() => {
     document.body.classList.remove('modal-is-open');
-    document.documentElement.classList.remove('modal-is-open');
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
