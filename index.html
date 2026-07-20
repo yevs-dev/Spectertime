@@ -1623,19 +1623,20 @@ function handleSubmit(e) {
   btn.disabled = true;
 }
 
-// Modal logic
-function _lockScroll(e) {
-  if (!e.target.closest('.modal')) e.preventDefault();
-}
+// Modal logic — iOS-safe scroll lock
+let _modalScrollY = 0;
 function openModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
+  _modalScrollY = window.scrollY;
   const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
   document.body.style.paddingRight = scrollbarWidth + 'px';
   document.querySelector('nav').style.paddingRight = scrollbarWidth + 'px';
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${_modalScrollY}px`;
+  document.body.style.width = '100%';
   document.body.classList.add('modal-is-open');
   document.documentElement.classList.add('modal-is-open');
-  document.addEventListener('touchmove', _lockScroll, { passive: false });
   overlay.classList.add('is-open');
   overlay.querySelectorAll('iframe[data-src]').forEach(f => {
     f.src = f.dataset.src;
@@ -1645,13 +1646,16 @@ function closeModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
   overlay.classList.remove('is-open');
-  document.removeEventListener('touchmove', _lockScroll);
   overlay.querySelectorAll('iframe').forEach(f => { f.src = ''; });
   setTimeout(() => {
     document.body.classList.remove('modal-is-open');
     document.documentElement.classList.remove('modal-is-open');
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
     document.body.style.paddingRight = '';
     document.querySelector('nav').style.paddingRight = '';
+    window.scrollTo(0, _modalScrollY);
   }, 300);
 }
 document.addEventListener('keydown', e => {
@@ -1659,9 +1663,12 @@ document.addEventListener('keydown', e => {
     document.querySelectorAll('.modal-overlay.is-open').forEach(o => closeModal(o.id));
   }
 });
-// Close on backdrop click
+// Close on backdrop tap/click
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
+  overlay.addEventListener('touchend', e => {
     if (e.target === overlay) closeModal(overlay.id);
   });
 });
