@@ -297,7 +297,6 @@
   }
   .modal-body {
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: rgba(0,0,0,0.15) transparent;
   }
@@ -450,7 +449,6 @@
       padding: 20px 20px 32px;
       overflow-y: auto;
       flex: 1;
-      -webkit-overflow-scrolling: touch;
     }
     .modal-close { top: 10px; right: 10px; width: 44px; height: 44px; }
     .modal-video { border-radius: 12px; margin: 14px 0; }
@@ -1639,15 +1637,17 @@ function handleSubmit(e) {
 }
 
 // Modal logic — touchmove + boundary detection (no position:fixed = no scroll jump)
-let _touchStartY = 0;
+let _prevTouchY = 0;
 function _onTouchStart(e) {
-  _touchStartY = e.touches[0].clientY;
+  _prevTouchY = e.touches[0].clientY;
 }
 function _blockBgScroll(e) {
   const scrollEl = e.target.closest('.modal-body, .story-scroll-area');
   if (scrollEl) {
     if (e.touches.length !== 1) { e.preventDefault(); return; }
-    const dy = e.touches[0].clientY - _touchStartY;
+    const currentY = e.touches[0].clientY;
+    const dy = currentY - _prevTouchY;
+    _prevTouchY = currentY;
     const atTop = scrollEl.scrollTop <= 0;
     const atBottom = Math.ceil(scrollEl.scrollTop) + scrollEl.clientHeight >= scrollEl.scrollHeight;
     if ((atTop && dy > 0) || (atBottom && dy < 0)) e.preventDefault();
