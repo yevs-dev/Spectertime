@@ -708,11 +708,14 @@
   .footer-copy { font-size: 12px; color: var(--text-faint); }
 
   /* RESPONSIVE */
-  /* HAMBURGER */
+  /* HAMBURGER — visible by default (mobile-first), hidden on desktop */
   .nav-hamburger {
-    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
     width: 36px; height: 36px; padding: 6px; background: none; border: none;
     cursor: pointer; border-radius: 8px;
+  }
+  @media (min-width: 769px) {
+    .nav-hamburger { display: none; }
   }
   .nav-hamburger span {
     display: block; height: 1.5px; background: var(--text);
@@ -751,7 +754,6 @@
     html, body { overflow-x: hidden; }
     .nav-links { display: none; }
     .nav-cta { display: none; }
-    .nav-hamburger { display: flex; }
 
     section { padding: 48px 20px; }
 
