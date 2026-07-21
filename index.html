@@ -807,24 +807,25 @@
     .portfolio-carousel-wrapper { gap: 0; }
     .carousel-btn { display: none; }
     .portfolio-carousel {
-      overflow: visible;
-      padding: 0;
+      overflow-x: scroll;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      touch-action: pan-x;
+      -webkit-overflow-scrolling: touch;
+      padding: 12px 20px 20px;
       margin: 0 -20px;
       width: calc(100% + 40px);
+      scrollbar-width: none;
     }
+    .portfolio-carousel::-webkit-scrollbar { display: none; }
     .portfolio-grid {
       display: flex;
       gap: 14px;
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      touch-action: pan-x;
-      padding: 12px 36px 20px;
-      scrollbar-width: none;
+      width: max-content;
+      overflow: visible;
       transition: none !important;
       transform: none !important;
     }
-    .portfolio-grid::-webkit-scrollbar { display: none; }
     .portfolio-card {
       flex: 0 0 calc(100vw - 72px);
       scroll-snap-align: center;
