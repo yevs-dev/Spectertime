@@ -149,11 +149,14 @@
     display: flex;
     width: max-content;
     animation: ticker 36s linear infinite;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   .ticker-track:hover { animation-play-state: paused; }
   @keyframes ticker {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from { transform: translateX(0) translateZ(0); }
+    to   { transform: translateX(-50%) translateZ(0); }
   }
   .ticker-set {
     display: flex;
@@ -934,7 +937,7 @@
     <div class="section-header">
       <p class="section-eyebrow">Services</p>
       <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px); max-width: none;">Everything you need, fully automated</h2>
-      <p class="section-sub" style="white-space: nowrap;">Six core systems that cover the full lead lifecycle — from first contact to closed deal.</p>
+      <p class="section-sub">Six core systems that cover the full lead lifecycle — from first contact to closed deal.</p>
     </div>
     <div class="services-grid">
 
