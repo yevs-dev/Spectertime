@@ -292,6 +292,7 @@
   }
   .modal-body {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: rgba(0,0,0,0.15) transparent;
   }
@@ -1637,6 +1638,12 @@ function openModal(id) {
   document.body.style.paddingRight = scrollbarWidth + 'px';
   const nav = document.querySelector('nav');
   if (nav) nav.style.paddingRight = scrollbarWidth + 'px';
+  // iOS: freeze body in place so background doesn't scroll
+  const scrollY = window.scrollY;
+  document.body.dataset.modalScrollY = scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.width = '100%';
   document.body.classList.add('modal-is-open');
   overlay.classList.add('is-open');
   overlay.querySelectorAll('iframe[data-src]').forEach(f => {
@@ -1649,10 +1656,16 @@ function closeModal(id) {
   overlay.classList.remove('is-open');
   overlay.querySelectorAll('iframe').forEach(f => { f.src = ''; });
   setTimeout(() => {
+    // Restore body and scroll position
+    const scrollY = parseInt(document.body.dataset.modalScrollY || '0');
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
     document.body.classList.remove('modal-is-open');
     document.body.style.paddingRight = '';
     const nav = document.querySelector('nav');
     if (nav) nav.style.paddingRight = '';
+    window.scrollTo(0, scrollY);
   }, 300);
 }
 document.addEventListener('keydown', e => {
