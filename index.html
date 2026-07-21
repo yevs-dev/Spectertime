@@ -820,8 +820,8 @@
       gap: 14px;
       width: max-content;
       padding: 0 20px;
-      will-change: transform;
-      transform: translate3d(0,0,0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
     }
     .portfolio-card {
       flex: 0 0 calc(100vw - 72px);
@@ -1844,11 +1844,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var startX = 0, startY = 0, startOffset = 0, currentOffset = 0;
   var active = false, dirSet = false, isHoriz = false;
   var cachedStep = 0, cachedMax = 0;
-
-  function setTransform(offset, animate) {
-    track.style.transition = animate ? 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
-    track.style.transform = 'translate3d(-' + offset + 'px,0,0)';
-  }
+  var rafId = null, pendingOffset = 0;
 
   carousel.addEventListener('touchstart', function(e) {
     if (!onMobile()) return;
@@ -1859,6 +1855,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var c = track.querySelector('.portfolio-card');
     cachedStep = c ? c.offsetWidth + 14 : 0;
     cachedMax = Math.max(0, (track.querySelectorAll('.portfolio-card').length - 1) * cachedStep);
+    // Set transition:none once here, not on every touchmove
+    track.style.transition = 'none';
   }, { passive: true });
 
   carousel.addEventListener('touchmove', function(e) {
@@ -1870,13 +1868,21 @@ document.addEventListener('DOMContentLoaded', () => {
       isHoriz = Math.abs(dx) > Math.abs(dy);
     }
     if (!dirSet || !isHoriz) return;
-    currentOffset = Math.max(0, Math.min(startOffset - dx, cachedMax));
-    setTransform(currentOffset, false);
+    pendingOffset = Math.max(0, Math.min(startOffset - dx, cachedMax));
+    // Batch via rAF — one transform write per frame
+    if (!rafId) {
+      rafId = requestAnimationFrame(function() {
+        track.style.transform = 'translate3d(-' + pendingOffset + 'px,0,0)';
+        currentOffset = pendingOffset;
+        rafId = null;
+      });
+    }
   }, { passive: true });
 
   carousel.addEventListener('touchend', function(e) {
     if (!active || !onMobile()) { active = false; return; }
     active = false;
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
     if (!isHoriz) return;
     var dx = startX - e.changedTouches[0].clientX;
     var s = cachedStep || 1;
@@ -1886,7 +1892,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var n = track.querySelectorAll('.portfolio-card').length;
     idx = Math.max(0, Math.min(idx, n - 1));
     currentOffset = idx * s;
-    setTransform(currentOffset, true);
+    track.style.transition = 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)';
+    track.style.transform = 'translate3d(-' + currentOffset + 'px,0,0)';
   }, { passive: true });
 
   window.addEventListener('resize', function() {
