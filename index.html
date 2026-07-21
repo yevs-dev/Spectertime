@@ -819,7 +819,6 @@
       gap: 14px;
       width: max-content;
       padding: 0 36px;
-      transition: none !important;
       will-change: transform;
     }
     .portfolio-card {
@@ -1821,7 +1820,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function isMobile() { return window.innerWidth <= 768; }
 
   function update() {
-    if (isMobile()) { track.style.transform = ''; return; }
+    if (isMobile()) return; // mobile swipe JS handles transform
     const offset = cards[current].offsetLeft;
     track.style.transform = `translateX(-${offset}px)`;
     prevBtn.disabled = current === 0;
