@@ -807,13 +807,13 @@
     .portfolio-carousel-wrapper { gap: 0; }
     .carousel-btn { display: none; }
     .portfolio-carousel {
-      overflow: hidden;
+      overflow: visible;
+      clip-path: inset(0);
       padding: 12px 0 20px;
       margin: 0 -20px;
       width: calc(100% + 40px);
       -webkit-user-select: none;
       user-select: none;
-      transform: translateZ(0);
     }
     .portfolio-grid {
       display: flex;
