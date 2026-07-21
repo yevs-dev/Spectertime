@@ -1698,19 +1698,19 @@ if (hamburger && mobileMenu) {
     } else {
       // Reset link states so stagger re-plays
       mobileMenu.querySelectorAll('.mobile-menu-link').forEach(l => {
+        l.style.transition = 'none';
         l.style.opacity = '0';
         l.style.transform = 'translateY(10px)';
-        l.style.transition = 'none';
       });
       hamburger.classList.add('open');
       mobileMenu.classList.add('open');
-      // Trigger stagger after one frame
-      requestAnimationFrame(() => {
-        mobileMenu.querySelectorAll('.mobile-menu-link').forEach((l, i) => {
-          l.style.transition = `opacity 0.35s cubic-bezier(0.25,0.46,0.45,0.94) ${i * 60}ms, transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94) ${i * 60}ms`;
+      // Stagger via setTimeout so order is guaranteed (Services first)
+      mobileMenu.querySelectorAll('.mobile-menu-link').forEach((l, i) => {
+        setTimeout(() => {
+          l.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
           l.style.opacity = '1';
           l.style.transform = 'translateY(0)';
-        });
+        }, 60 + i * 60);
       });
     }
   });
