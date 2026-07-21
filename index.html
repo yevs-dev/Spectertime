@@ -1822,7 +1822,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function isMobile() { return window.innerWidth <= 768; }
 
   function update() {
-    if (isMobile()) { track.style.transform = ''; return; }
+    if (isMobile()) return;
     const offset = cards[current].offsetLeft;
     track.style.transform = `translateX(-${offset}px)`;
     prevBtn.disabled = current === 0;
@@ -1845,6 +1845,12 @@ document.addEventListener('DOMContentLoaded', () => {
   var startX = 0, startY = 0, startOffset = 0, currentOffset = 0;
   var active = false, dirSet = false, isHoriz = false;
   var cachedStep = 0, cachedMax = 0;
+
+  // Pre-create GPU layer at load time so dark card backgrounds
+  // are rasterized before first swipe (prevents white-flash flicker)
+  if (onMobile()) {
+    track.style.transform = 'translate3d(0,0,0)';
+  }
 
   carousel.addEventListener('touchstart', function(e) {
     if (!onMobile()) return;
