@@ -807,13 +807,13 @@
     .portfolio-carousel-wrapper { gap: 0; }
     .carousel-btn { display: none; }
     .portfolio-carousel {
-      overflow: visible;
-      clip-path: inset(0);
+      overflow: hidden;
       padding: 12px 0 20px;
       margin: 0 -20px;
       width: calc(100% + 40px);
       -webkit-user-select: none;
       user-select: none;
+      transform: translateZ(0);
     }
     .portfolio-grid {
       display: flex;
@@ -828,6 +828,8 @@
       -webkit-user-select: none;
       user-select: none;
       -webkit-touch-callout: none;
+      transition: none;
+      transform: none;
     }
     .portfolio-card:hover { transform: none; }
     .stats-grid { grid-template-columns: 1fr; }
