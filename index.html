@@ -807,11 +807,10 @@
     .portfolio-carousel-wrapper { gap: 0; }
     .carousel-btn { display: none; }
     .portfolio-carousel {
-      overflow-x: scroll;
-      overflow-y: visible;
-      scroll-snap-type: x mandatory;
-      touch-action: pan-x;
+      overflow-x: auto;
+      overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
       padding: 12px 20px 20px;
       margin: 0 -20px;
       width: calc(100% + 40px);
@@ -827,8 +826,8 @@
       transform: none !important;
     }
     .portfolio-card {
-      flex: 0 0 calc(100vw - 72px);
-      scroll-snap-align: center;
+      flex: 0 0 calc(100vw - 56px);
+      scroll-snap-align: start;
     }
     .portfolio-card:hover { transform: none; }
     .stats-grid { grid-template-columns: 1fr; }
