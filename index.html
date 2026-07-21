@@ -1630,7 +1630,11 @@ function handleSubmit(e) {
   btn.disabled = true;
 }
 
-// Modal logic
+// Modal logic — iOS scroll lock via touchmove block (no position:fixed = no scroll jump)
+function _blockBgScroll(e) {
+  if (e.target.closest('.modal-overlay')) return;
+  e.preventDefault();
+}
 function openModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
@@ -1638,34 +1642,24 @@ function openModal(id) {
   document.body.style.paddingRight = scrollbarWidth + 'px';
   const nav = document.querySelector('nav');
   if (nav) nav.style.paddingRight = scrollbarWidth + 'px';
-  // iOS: freeze body in place so background doesn't scroll
-  const scrollY = window.scrollY;
-  document.body.dataset.modalScrollY = scrollY;
-  document.body.style.position = 'fixed';
-  document.body.style.top = `-${scrollY}px`;
-  document.body.style.width = '100%';
   document.body.classList.add('modal-is-open');
   overlay.classList.add('is-open');
   overlay.querySelectorAll('iframe[data-src]').forEach(f => {
     f.src = f.dataset.src;
   });
+  document.addEventListener('touchmove', _blockBgScroll, { passive: false });
 }
 function closeModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
   overlay.classList.remove('is-open');
   overlay.querySelectorAll('iframe').forEach(f => { f.src = ''; });
+  document.removeEventListener('touchmove', _blockBgScroll, { passive: false });
   setTimeout(() => {
-    // Restore body and scroll position
-    const scrollY = parseInt(document.body.dataset.modalScrollY || '0');
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
     document.body.classList.remove('modal-is-open');
     document.body.style.paddingRight = '';
     const nav = document.querySelector('nav');
     if (nav) nav.style.paddingRight = '';
-    window.scrollTo(0, scrollY);
   }, 300);
 }
 document.addEventListener('keydown', e => {
