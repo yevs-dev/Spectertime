@@ -803,28 +803,30 @@
     .about-text { font-size: 14px; }
     .about-cta { text-align: center; }
 
-    /* Portfolio — native swipe carousel */
+    /* Portfolio — native scroll-snap carousel */
     .portfolio-carousel-wrapper { gap: 0; }
     .carousel-btn { display: none; }
     .portfolio-carousel {
-      overflow: hidden;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 20px;
+      -webkit-overflow-scrolling: auto;
+      scrollbar-width: none;
       padding: 12px 0 20px;
       margin: 0 -20px;
       width: calc(100% + 40px);
-      -webkit-user-select: none;
-      user-select: none;
-      transform: translateZ(0);
     }
+    .portfolio-carousel::-webkit-scrollbar { display: none; }
     .portfolio-grid {
       display: flex;
       gap: 14px;
       width: max-content;
       padding: 0 20px;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
     }
     .portfolio-card {
       flex: 0 0 calc(100vw - 72px);
+      scroll-snap-align: start;
       -webkit-user-select: none;
       user-select: none;
       -webkit-touch-callout: none;
@@ -863,7 +865,7 @@
     .hero-actions .btn-primary, .hero-actions .btn-secondary { text-align: center; width: 65%; }
     .service-card { padding: 20px 16px; }
     #hero canvas#net { opacity: 0.35; }
-    .portfolio-carousel { margin: 0 -16px; width: calc(100% + 32px); padding: 12px 0 20px; }
+    .portfolio-carousel { margin: 0 -16px; width: calc(100% + 32px); padding: 12px 0 20px; scroll-padding-left: 16px; }
     .portfolio-grid { padding: 0 16px; }
     .portfolio-card { flex: 0 0 calc(100vw - 48px); }
   }
@@ -1823,7 +1825,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function isMobile() { return window.innerWidth <= 768; }
 
   function update() {
-    if (isMobile()) return; // mobile swipe JS handles transform
+    if (isMobile()) { track.style.transform = ''; return; }
     const offset = cards[current].offsetLeft;
     track.style.transform = `translateX(-${offset}px)`;
     prevBtn.disabled = current === 0;
@@ -1837,71 +1839,6 @@ document.addEventListener('DOMContentLoaded', () => {
   update();
 })();
 
-// Portfolio mobile swipe
-(function() {
-  var carousel = document.querySelector('.portfolio-carousel');
-  var track = document.getElementById('portfolio-track');
-  if (!carousel || !track) return;
-  function onMobile() { return window.innerWidth <= 768; }
-  var startX = 0, startY = 0, startOffset = 0, currentOffset = 0;
-  var active = false, dirSet = false, isHoriz = false;
-  var cachedStep = 0, cachedMax = 0;
-  var rafId = null, pendingOffset = 0;
-
-  carousel.addEventListener('touchstart', function(e) {
-    if (!onMobile()) return;
-    active = true; dirSet = false; isHoriz = false;
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    startOffset = currentOffset;
-    var c = track.querySelector('.portfolio-card');
-    cachedStep = c ? c.offsetWidth + 14 : 0;
-    cachedMax = Math.max(0, (track.querySelectorAll('.portfolio-card').length - 1) * cachedStep);
-    // Set transition:none once here, not on every touchmove
-    track.style.transition = 'none';
-  }, { passive: true });
-
-  carousel.addEventListener('touchmove', function(e) {
-    if (!active || !onMobile()) return;
-    var dx = e.touches[0].clientX - startX;
-    var dy = e.touches[0].clientY - startY;
-    if (!dirSet && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) {
-      dirSet = true;
-      isHoriz = Math.abs(dx) > Math.abs(dy);
-    }
-    if (!dirSet || !isHoriz) return;
-    pendingOffset = Math.max(0, Math.min(startOffset - dx, cachedMax));
-    // Batch via rAF — one transform write per frame
-    if (!rafId) {
-      rafId = requestAnimationFrame(function() {
-        track.style.transform = 'translate3d(-' + pendingOffset + 'px,0,0)';
-        currentOffset = pendingOffset;
-        rafId = null;
-      });
-    }
-  }, { passive: true });
-
-  carousel.addEventListener('touchend', function(e) {
-    if (!active || !onMobile()) { active = false; return; }
-    active = false;
-    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-    if (!isHoriz) return;
-    var dx = startX - e.changedTouches[0].clientX;
-    var s = cachedStep || 1;
-    var idx = Math.round(startOffset / s);
-    if (dx > s * 0.15) idx = Math.floor(startOffset / s) + 1;
-    else if (dx < -s * 0.15) idx = Math.ceil(startOffset / s) - 1;
-    var n = track.querySelectorAll('.portfolio-card').length;
-    idx = Math.max(0, Math.min(idx, n - 1));
-    currentOffset = idx * s;
-    track.style.transition = 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)';
-    track.style.transform = 'translate3d(-' + currentOffset + 'px,0,0)';
-  }, { passive: true });
-
-  window.addEventListener('resize', function() {
-    if (!onMobile()) { currentOffset = 0; track.style.transform = ''; track.style.transition = ''; }
-  });
-})();
 
 // Smooth scroll nav
 document.querySelectorAll('a[href^="#"]').forEach(a => {
