@@ -809,24 +809,18 @@
     .portfolio-carousel {
       display: flex;
       gap: 14px;
-      overflow-x: scroll;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      touch-action: pan-x;
+      overflow: hidden;
       padding: 12px 36px 20px;
       margin: 0 -20px;
       width: calc(100% + 40px);
-      scrollbar-width: none;
       -webkit-user-select: none;
       user-select: none;
     }
-    .portfolio-carousel::-webkit-scrollbar { display: none; }
     .portfolio-grid {
       display: contents;
     }
     .portfolio-card {
       flex: 0 0 calc(100vw - 72px);
-      scroll-snap-align: start;
       transition: none;
       transform: none;
       -webkit-user-select: none;
@@ -1836,6 +1830,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('resize', update);
   update();
+})();
+
+// Portfolio mobile swipe
+(function() {
+  var carousel = document.querySelector('.portfolio-carousel');
+  if (!carousel) return;
+  function onMobile() { return window.innerWidth <= 768; }
+  var startX = 0, startScroll = 0, active = false, currentIdx = 0;
+
+  function getCards() { return carousel.querySelectorAll('.portfolio-card'); }
+  function getStep() {
+    var c = carousel.querySelector('.portfolio-card');
+    return c ? c.offsetWidth + 14 : 0;
+  }
+  function snapTo(idx) {
+    var cards = getCards();
+    currentIdx = Math.max(0, Math.min(idx, cards.length - 1));
+    var step = getStep();
+    // Use transform on the grid's flex children via a wrapper offset
+    carousel.style.transform = 'translateX(-' + (currentIdx * step) + 'px)';
+  }
+
+  // Wrap cards in a sliding inner track
+  function initMobile() {
+    if (!onMobile()) return;
+    carousel.style.transform = '';
+    carousel.style.transition = '';
+  }
+
+  carousel.addEventListener('touchstart', function(e) {
+    if (!onMobile()) return;
+    active = true;
+    startX = e.touches[0].clientX;
+    startScroll = currentIdx * getStep();
+    carousel.style.transition = 'none';
+  }, { passive: true });
+
+  carousel.addEventListener('touchmove', function(e) {
+    if (!active || !onMobile()) return;
+    var dx = startX - e.touches[0].clientX;
+    var offset = Math.max(0, startScroll + dx);
+    carousel.style.transform = 'translateX(-' + offset + 'px)';
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', function(e) {
+    if (!active || !onMobile()) { active = false; return; }
+    active = false;
+    var dx = startX - e.changedTouches[0].clientX;
+    var step = getStep();
+    var threshold = step * 0.2;
+    var idx = currentIdx;
+    if (dx > threshold) idx++;
+    else if (dx < -threshold) idx--;
+    carousel.style.transition = 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)';
+    snapTo(idx);
+  }, { passive: true });
+
+  window.addEventListener('resize', initMobile);
 })();
 
 // Smooth scroll nav
