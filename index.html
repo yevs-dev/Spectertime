@@ -1622,6 +1622,9 @@
 </div>
 
 <script>
+// Prevent browser from restoring scroll position on reload
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.form-submit');
@@ -1632,7 +1635,7 @@ function handleSubmit(e) {
 
 // Modal logic — iOS scroll lock via touchmove block (no position:fixed = no scroll jump)
 function _blockBgScroll(e) {
-  if (e.target.closest('.modal-overlay')) return;
+  if (e.target.closest('.modal-body, .story-scroll-area')) return;
   e.preventDefault();
 }
 function openModal(id) {
