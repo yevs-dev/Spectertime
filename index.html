@@ -199,7 +199,9 @@
     transform-style: preserve-3d;
     position: relative; overflow: hidden;
   }
-  .service-card:hover { box-shadow: 0 24px 48px rgba(0,0,0,0.13), 0 6px 16px rgba(0,0,0,0.07); transform: perspective(800px) translateY(-8px) rotateX(2deg); }
+  @media (hover: hover) {
+    .service-card:hover { box-shadow: 0 24px 48px rgba(0,0,0,0.13), 0 6px 16px rgba(0,0,0,0.07); transform: perspective(800px) translateY(-8px) rotateX(2deg); }
+  }
   .service-icon {
     width: 48px; height: 48px; background: var(--bg); border-radius: var(--radius-sm);
     display: flex; align-items: center; justify-content: center;
@@ -862,10 +864,6 @@
     .portfolio-carousel { margin: 0 -16px; width: calc(100% + 32px); }
     .portfolio-grid { padding: 12px 28px 20px; }
     .portfolio-card { flex: 0 0 calc(100vw - 56px); }
-  }
-  @media (hover: none) {
-    .service-card { transition: none; }
-    .service-card:hover { box-shadow: none; transform: none; }
   }
 </style>
 </head>
