@@ -229,8 +229,15 @@
   /* CARD HOVER OVERLAY + WATCH BUTTON */
   body.modal-is-open {
     overflow: hidden !important;
+    touch-action: none;
   }
-  .modal-body { overscroll-behavior: contain; }
+  .modal-body {
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+  .story-scroll-area {
+    touch-action: pan-y;
+  }
 
   body.modal-is-open .service-card {
     transform: none !important;
