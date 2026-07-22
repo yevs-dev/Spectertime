@@ -4,6 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spectertime — AI Automation for Real Estate</title>
+<meta name="description" content="Spectertime builds AI automation systems for real estate businesses — lead qualification, CRM automation, follow-up sequences, and full workflow automation. From first conversation to live system in 1–2 weeks.">
+<link rel="canonical" href="https://spectertime.ai">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://spectertime.ai">
+<meta property="og:title" content="Spectertime — AI Automation for Real Estate">
+<meta property="og:description" content="Cut the busywork. Close your leads. AI automation systems built for real estate businesses — live in 1 to 2 weeks.">
+<meta property="og:image" content="https://spectertime.ai/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Spectertime — AI Automation for Real Estate">
+<meta name="twitter:description" content="Cut the busywork. Close your leads. AI automation systems built for real estate businesses — live in 1 to 2 weeks.">
+<meta name="twitter:image" content="https://spectertime.ai/og-image.png">
+
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%23ffffff'/><text x='16' y='24' font-family='-apple-system,BlinkMacSystemFont,SF Pro Display,sans-serif' font-size='24' font-weight='700' fill='%23000000' text-anchor='middle'>S</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,14 +133,16 @@
   .btn-primary {
     font-size: 15px; font-weight: 500; padding: 14px 28px;
     background: var(--text); color: #fff; border-radius: 980px;
-    text-decoration: none; transition: opacity 0.2s;
+    text-decoration: none; transition: opacity 0.2s; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
   .btn-primary:hover { opacity: 0.8; }
   .btn-secondary {
     font-size: 15px; font-weight: 500; padding: 14px 28px;
     background: transparent; color: var(--text);
     border: 1.5px solid rgba(0,0,0,0.18); border-radius: 980px;
-    text-decoration: none; transition: border-color 0.2s, background 0.2s, color 0.2s;
+    text-decoration: none; transition: border-color 0.2s, background 0.2s, color 0.2s; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
   .btn-secondary:hover { background: var(--text); color: #fff; border-color: var(--text); }
 
@@ -848,7 +868,7 @@
     .contact-title { white-space: normal !important; max-width: 100% !important; font-size: 24px !important; letter-spacing: -0.5px; }
     .contact-sub { white-space: normal !important; max-width: 100% !important; font-size: 14px !important; }
     .contact-form-card { width: 100%; padding: 28px 20px; }
-    .form-submit { width: 100%; padding: 16px; }
+    .form-submit { width: 70%; padding: 16px; }
     .form-row { grid-template-columns: 1fr; }
 
     footer { padding: 48px 20px 40px; }
@@ -1173,7 +1193,7 @@
         <p class="about-text">I help agents, teams, and property businesses turn slow follow-up, scattered lead handling, CRM updates, and manual admin into structured systems that respond faster, qualify better, and run 24/7.</p>
         <p class="about-text">My work sits between strategy and execution: I don't just "add AI." Every system I build gets deployed in a real business and has to prove its value — reliable, maintainable, and actually used by the teams I hand it to.</p>
         <p class="about-text">If your business has repetitive, high-stakes tasks that depend on a human being available at the right moment — that's exactly the problem I solve.</p>
-        <div class="about-cta"><button class="btn btn-secondary" style="margin-top: 16px;" onclick="openModal('modal-story')">My story & approach</button></div>
+        <div class="about-cta"><button class="btn btn-secondary" style="margin-top: 16px;" onclick="openModal('modal-story')">My story & approach →</button></div>
       </div>
     </div>
   </div>
@@ -1271,57 +1291,30 @@
 <section id="contact">
   <div class="container">
     <div class="contact-wrapper">
-      <h2 class="contact-title" style="font-size: clamp(20px, 3vw, 46px);">Cut the busywork, close your leads</h2>
-      <p class="contact-sub">Tell me what your current workflow looks like — I'll show you exactly what can be automated and what it would take to build it.</p>
+      <h2 class="contact-title" style="font-size: clamp(20px, 3vw, 46px);">Cut the busywork. Close your leads.</h2>
+      <p class="contact-sub">Tell me where to reach you, and let's start a focused conversation about what's slowing your business down.</p>
       <div class="contact-form-card">
         <form class="contact-form" onsubmit="handleSubmit(event)">
           <div class="form-row">
             <div class="form-group">
               <label>Your name</label>
-              <input type="text" placeholder="Jane Doe" autocomplete="name" required>
+              <input type="text" name="name" placeholder="Jane Doe" autocomplete="name" required>
             </div>
             <div class="form-group">
               <label>Email address</label>
-              <input type="email" placeholder="jane@agency.com" autocomplete="email" required>
+              <input type="email" name="email" placeholder="jane@agency.com" autocomplete="email" required>
             </div>
           </div>
           <div class="form-group">
             <label>Your company or agency</label>
-            <input type="text" placeholder="Acme Realty" autocomplete="organization">
-          </div>
-          <div class="form-group">
-            <label>What do you need help with?</label>
-            <div class="custom-select" id="serviceSelect">
-              <select id="contact-service" name="service">
-                <option value="" disabled selected>Select an option...</option>
-                <option>Lead Qualification</option>
-                <option>CRM Automation</option>
-                <option>AI Chatbot / Follow-Up</option>
-                <option>Missed-Call Text-Back</option>
-                <option>Appointment-Setting</option>
-                <option>Full Workflow Automation</option>
-                <option>Consulting Session</option>
-                <option>Not sure — let's talk</option>
-              </select>
-              <div class="custom-select-trigger" id="serviceSelectTrigger">Select an option...</div>
-              <div class="custom-select-dropdown" id="serviceSelectDropdown">
-                <div class="custom-select-option" data-value="Lead Qualification">Lead Qualification</div>
-                <div class="custom-select-option" data-value="CRM Automation">CRM Automation</div>
-                <div class="custom-select-option" data-value="AI Chatbot / Follow-Up">AI Chatbot / Follow-Up</div>
-                <div class="custom-select-option" data-value="Missed-Call Text-Back">Missed-Call Text-Back</div>
-                <div class="custom-select-option" data-value="Appointment-Setting">Appointment-Setting</div>
-                <div class="custom-select-option" data-value="Full Workflow Automation">Full Workflow Automation</div>
-                <div class="custom-select-option" data-value="Consulting Session">Consulting Session</div>
-                <div class="custom-select-option" data-value="Not sure — let's talk">Not sure — let's talk</div>
-              </div>
-            </div>
+            <input type="text" name="company" placeholder="Acme Realty" autocomplete="organization">
           </div>
           <div class="form-group">
             <label>Message</label>
-            <textarea id="contact-message" placeholder="Tell me about your current lead flow, the tools you use, and where things slow down."></textarea>
+            <textarea id="contact-message" placeholder="Briefly tell me what is taking too much time, causing leads to slip through, or not working as well as it should."></textarea>
           </div>
-          <button type="submit" class="form-submit">Send Message →</button>
-          <p class="form-note"><span class="online-dot"></span>I reply within 24 hours. No sales pitch — just a straight conversation about what's worth automating.</p>
+          <button type="submit" class="form-submit">Get started →</button>
+          <p class="form-note"><span class="online-dot"></span>You'll hear from me within 24 hours. No sales pitch — just a straight conversation about what's worth automating.</p>
         </form>
       </div>
     </div>
@@ -1633,16 +1626,62 @@
   </div>
 </div>
 
+<!-- Consulting Modal -->
+<div class="modal-overlay" id="modal-consulting">
+  <div class="modal" style="max-width: 780px;">
+    <button class="modal-close" onclick="closeModal('modal-consulting')">✕</button>
+    <div class="modal-body">
+      <p class="modal-eyebrow">Consulting session</p>
+      <h3 class="modal-title">Get clarity before you build</h3>
+      <p class="modal-desc" style="margin-bottom: 28px;">Whether you're exploring AI automation, evaluating a specific idea, or trying to understand where to start, tell me what you're working through.</p>
+      <form id="consulting-form" class="contact-form" onsubmit="handleConsultingSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="c-name">Your name</label>
+            <input type="text" id="c-name" name="name" placeholder="Jane Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="c-email">Email address</label>
+            <input type="email" id="c-email" name="email" placeholder="jane@agency.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="c-company">Your company or agency</label>
+          <input type="text" id="c-company" name="company" placeholder="Acme Realty">
+        </div>
+        <div class="form-group">
+          <label for="c-message">Brief context</label>
+          <textarea id="c-message" name="message" placeholder="What are you trying to understand, decide, or improve? Share any relevant context, tools you currently use, and the main questions you would like the session to answer." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary form-submit" id="consulting-submit" style="width: 60%; justify-content: center; padding: 14px 28px; margin-top: 4px;">Submit →</button>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px; line-height: 1.4; text-align: center;">
+          <span class="online-dot" style="display: inline-block; vertical-align: middle; margin-right: 7px; margin-bottom: 2px;"></span>I'll personally review your request and reply within 24 hours with the next step.
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script>
 // Prevent browser from restoring scroll position on reload
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
 function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = 'Message sent ✓';
-  btn.style.opacity = '0.6';
-  btn.disabled = true;
+  const form = e.target;
+  const card = form.closest('.contact-form-card');
+  card.style.minHeight = card.offsetHeight + 'px';
+  card.style.display = 'flex';
+  card.style.alignItems = 'center';
+  card.style.justifyContent = 'center';
+  card.style.padding = '0';
+  card.innerHTML = '<div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 32px;"><div style="width:80px;height:80px;border-radius:50%;background:#f0faf3;display:flex;align-items:center;justify-content:center;font-size:40px;">✓</div><p style="font-size:24px;font-weight:600;letter-spacing:-0.02em;">Thanks — your request has been received.</p><p style="font-size:15px;color:var(--text-muted);line-height:1.6;max-width:560px;">Check your inbox for a few short questions about your business. Once you submit them, you\'ll receive the booking link.</p></div>';
+}
+
+function handleConsultingSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('consulting-form');
+  form.innerHTML = '<div style="text-align:center; padding: 32px 0 16px; display:flex; flex-direction:column; align-items:center; gap:12px;"><div style="width:64px;height:64px;border-radius:50%;background:#f0faf3;display:flex;align-items:center;justify-content:center;font-size:30px;">✓</div><p style="font-size:17px;font-weight:600;letter-spacing:-0.01em;">Thanks — your consulting request has been submitted.</p><p style="font-size:14px;color:var(--text-muted);line-height:1.55;">I\'ll personally review it and get back to you within 24 hours.</p></div>';
 }
 
 // Modal logic — touchmove + boundary detection (no position:fixed = no scroll jump)
@@ -1713,20 +1752,7 @@ const defaultPlaceholder = "Describe your current workflow and biggest bottlenec
 const consultingPlaceholder = "Tell me what you're trying to understand or figure out. No need to have it all worked out — that's what the session is for.";
 
 function openConsulting() {
-  const select = document.getElementById('contact-service');
-  const textarea = document.getElementById('contact-message');
-  if (select) select.value = 'Consulting Session';
-  if (textarea) textarea.placeholder = consultingPlaceholder;
-  const trigger = document.getElementById('serviceSelectTrigger');
-  if (trigger) { trigger.textContent = 'Consulting Session'; trigger.classList.add('has-value'); }
-  const dropdown = document.getElementById('serviceSelectDropdown');
-  if (dropdown) {
-    dropdown.querySelectorAll('.custom-select-option').forEach(o => {
-      o.classList.toggle('selected', o.dataset.value === 'Consulting Session');
-    });
-  }
-  const contact = document.getElementById('contact');
-  if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+  openModal('modal-consulting');
 }
 
 // Hamburger menu
