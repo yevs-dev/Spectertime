@@ -1312,7 +1312,7 @@
           </div>
           <div class="form-group">
             <label>Message</label>
-            <textarea id="contact-message" placeholder="Briefly tell me what is taking too much time, causing leads to slip through, or not working as well as it should."></textarea>
+            <textarea id="contact-message" name="message" placeholder="Briefly tell me what is taking too much time, causing leads to slip through, or not working as well as it should."></textarea>
           </div>
           <button type="submit" class="form-submit">Get started →</button>
           <p class="form-note"><span class="online-dot"></span>You'll hear from me within 24 hours. No sales pitch — just a straight conversation about what's worth automating.</p>
@@ -1675,6 +1675,17 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
+  const data = {
+    name: form.querySelector('[name="name"]').value,
+    email: form.querySelector('[name="email"]').value,
+    company: form.querySelector('[name="company"]').value,
+    message: form.querySelector('[name="message"]').value
+  };
+  fetch('https://hook.eu1.make.com/bj7oio0ni3z9lnyqtj29fbccytzhshtc', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(() => {});
   const card = form.closest('.contact-form-card');
   card.style.minHeight = card.offsetHeight + 'px';
   card.style.display = 'flex';
