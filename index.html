@@ -1296,6 +1296,7 @@
       <p class="contact-sub">Tell me where to reach you, and let's start a focused conversation about what's slowing your business down.</p>
       <div class="contact-form-card">
         <form class="contact-form" onsubmit="handleSubmit(event)">
+          <input type="text" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
           <div class="form-row">
             <div class="form-group">
               <label>Your name</label>
@@ -1685,6 +1686,7 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
+  if (form.querySelector('[name="website"]').value) return;
   const data = {
     name: form.querySelector('[name="name"]').value,
     email: form.querySelector('[name="email"]').value,
