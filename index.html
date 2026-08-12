@@ -1698,6 +1698,17 @@ function handleSubmit(e) {
 function handleConsultingSubmit(e) {
   e.preventDefault();
   const form = document.getElementById('consulting-form');
+  const data = {
+    name: form.querySelector('[name="name"]').value,
+    email: form.querySelector('[name="email"]').value,
+    company: form.querySelector('[name="company"]').value,
+    message: form.querySelector('[name="message"]').value
+  };
+  fetch('https://hook.eu1.make.com/6gsa78h1qpcgfdy4ocuyy1mr8xxwrmlk', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(() => {});
   form.innerHTML = '<div style="text-align:center; padding: 32px 0 16px; display:flex; flex-direction:column; align-items:center; gap:12px;"><div style="width:64px;height:64px;border-radius:50%;background:#f0faf3;display:flex;align-items:center;justify-content:center;font-size:30px;">✓</div><p style="font-size:17px;font-weight:600;letter-spacing:-0.01em;">Thanks — your consulting request has been submitted.</p><p style="font-size:14px;color:var(--text-muted);line-height:1.55;">I\'ll personally review it and get back to you within 24 hours.</p></div>';
 }
 
