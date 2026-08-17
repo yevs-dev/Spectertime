@@ -122,11 +122,11 @@
   .hero-title-muted { color: #86868b; }
   @media (max-width: 768px) {
     .hero-title { white-space: normal; font-size: clamp(32px, 7vw, 48px); }
-    .hero-sub { white-space: normal; font-size: 16px; max-width: 90%; }
+    .hero-sub { white-space: normal; font-size: 14px; max-width: 90%; }
     .section-title { white-space: normal; }
   }
   .hero-sub {
-    font-size: 18px; color: var(--text-muted); max-width: 680px;
+    font-size: 18px; color: var(--text-muted); max-width: 820px;
     margin: 0 auto 44px; line-height: 1.6; font-weight: 400;
   }
   .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
@@ -210,6 +210,83 @@
     font-size: 16px; color: var(--text-muted); max-width: 520px;
     margin: 16px auto 0; line-height: 1.6; text-align: center;
   }
+
+  /* Consulting cards */
+  .consulting-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .consulting-card {
+    cursor: default;
+  }
+
+  /* Consulting outcome steps */
+  .csteps {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 60px;
+  }
+  .cstep {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .cstep-circle {
+    margin-bottom: 16px;
+  }
+  .cstep-title {
+    margin: 0 0 8px;
+  }
+  .cstep-desc {
+    margin: 0;
+  }
+  .cstep-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-top: 44px;
+    min-width: 16px;
+    width: auto;
+    border-right: none;
+  }
+  .cstep-circle {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .cstep-circle--dashed {
+    border-style: dashed;
+  }
+  .cstep-title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    margin: 0 0 8px;
+    color: var(--text);
+    padding: 0 8px;
+  }
+  .cstep-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 8px;
+  }
+  .cstep--muted .cstep-title {
+    color: var(--text-muted);
+  }
+
   .services-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
   }
@@ -490,8 +567,8 @@
   /* HOW IT WORKS */
   #how { background: var(--white); }
   .consulting-banner {
-    margin-top: 64px;
-    background: var(--bg); border: 1px solid var(--border);
+    margin-top: 56px;
+    background: var(--white); border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: 36px 48px;
     display: flex; align-items: center; justify-content: space-between; gap: 40px;
@@ -802,6 +879,13 @@
     .section-eyebrow { font-size: 11px; margin-bottom: 10px; }
     .section-sub { font-size: 14px; margin-top: 10px; }
 
+    .consulting-cards { grid-template-columns: 1fr; gap: 12px; }
+    .csteps { flex-direction: column; align-items: flex-start; }
+    .cstep { display: grid; grid-template-columns: 70px 1fr; grid-template-rows: auto auto; column-gap: 20px; text-align: left; width: 100%; flex: none; }
+    .cstep-circle { grid-column: 1; grid-row: 1 / 3; align-self: center; width: 70px; height: 70px; margin-bottom: 0; }
+    .cstep-title { grid-column: 2; grid-row: 1; font-size: 17px; margin: 0 0 4px; align-self: end; }
+    .cstep-desc { grid-column: 2; grid-row: 2; font-size: 14px; align-self: start; }
+    .cstep-line { width: 35px; height: 12px; flex: none; background: none; border-right: 1px solid var(--border); margin: 3px 0; }
     .services-grid { grid-template-columns: 1fr; gap: 12px; }
     .service-card { padding: 24px 20px; }
     .service-icon { width: 40px; height: 40px; font-size: 18px; margin-bottom: 16px; }
@@ -874,7 +958,7 @@
 
     footer { padding: 48px 20px 40px; }
     .footer-inner { flex-direction: column; align-items: center; gap: 20px; padding: 0; }
-    .footer-links { justify-content: center; gap: 24px; }
+    .footer-links { flex-direction: column; align-items: center; gap: 14px; }
     .footer-divider { display: block; width: 32px; height: 1px; background: var(--border); }
     .footer-copy { text-align: center; }
   }
@@ -902,7 +986,8 @@
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">Spectertime<span style="color:#86868b">.ai</span></a>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
+      <li><a href="#consulting">Consulting</a></li>
+      <li><a href="#services">Implementation</a></li>
       <li><a href="#how">How It Works</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#portfolio">Case Studies</a></li>
@@ -914,7 +999,8 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#services" class="mobile-menu-link">Services</a>
+  <a href="#consulting" class="mobile-menu-link">Consulting</a>
+  <a href="#services" class="mobile-menu-link">Implementation</a>
   <a href="#how" class="mobile-menu-link">How It Works</a>
   <a href="#about" class="mobile-menu-link">About</a>
   <a href="#portfolio" class="mobile-menu-link">Case Studies</a>
@@ -929,9 +1015,9 @@
     <div class="hero-avatar">
       <img src="yev 3.jpg" alt="Yev Specter">
     </div>
-    <p class="hero-label">AI Systems · Real Estate</p>
+    <p class="hero-label">AI Consulting · Systems · Real Estate</p>
     <h1 class="hero-title"><span style="white-space:nowrap">Automate your Real Estate.</span><br><span class="hero-title-muted">Keep every lead.</span></h1>
-    <p class="hero-sub">I'm Yev — I build AI systems that qualify leads, update your CRM, and follow up with prospects — automatically. So you close more deals without adding headcount or working more hours.</p>
+    <p class="hero-sub">I'm Yev — a tech founder with a background in real estate development. I help real estate businesses understand where AI can make a difference, choose the right tools, and build the systems that improve the way they work.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Book a Free Call</a>
       <a href="#services" class="btn-secondary">See What I Build</a>
@@ -965,13 +1051,90 @@
   </div>
 </div>
 
+<!-- AI CONSULTING -->
+<section id="consulting">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">AI Consulting</p>
+      <h2 class="section-title" style="white-space: nowrap; max-width: none; font-size: clamp(22px, 3.2vw, 48px);">Get clarity before you automate.</h2>
+    </div>
+    <div class="consulting-cards">
+      <div class="service-card consulting-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Cut Through the Noise</h3>
+        <p class="service-desc">AI is moving faster than most business owners have time to follow. I help you understand what actually matters for your business.</p>
+      </div>
+      <div class="service-card consulting-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Find the Leverage</h3>
+        <p class="service-desc">I look at how you work today — your tools, workflows, repetitive tasks, customer journey and team handoffs — and identify where AI can genuinely improve the operation.</p>
+      </div>
+    </div>
+
+    <!-- Consulting outcome steps -->
+    <div class="csteps">
+      <div class="cstep">
+        <div class="cstep-circle">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h4 class="cstep-title">A better tool</h4>
+        <p class="cstep-desc">Sometimes the answer is a better existing tool.</p>
+      </div>
+      <div class="cstep-line"></div>
+      <div class="cstep">
+        <div class="cstep-circle">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 14 20 9 15 4"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+        </div>
+        <h4 class="cstep-title" style="white-space: nowrap;">A different process</h4>
+        <p class="cstep-desc">Sometimes it's changing the process.</p>
+      </div>
+      <div class="cstep-line"></div>
+      <div class="cstep">
+        <div class="cstep-circle">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h4 class="cstep-title">Automation</h4>
+        <p class="cstep-desc">Sometimes it's automation.</p>
+      </div>
+      <div class="cstep-line"></div>
+      <div class="cstep cstep--muted">
+        <div class="cstep-circle cstep-circle--dashed">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <h4 class="cstep-title">Leave it alone</h4>
+        <p class="cstep-desc">And sometimes the right answer is to leave something alone.</p>
+      </div>
+    </div>
+
+    <div class="consulting-banner">
+      <div class="consulting-banner-text">
+        <p class="consulting-banner-title">You may be doing work AI no longer needs you to do.</p>
+        <p class="consulting-banner-sub">I look at how your business works today and identify where new AI tools, better processes, or automation can create real leverage — without disrupting what already works.</p>
+      </div>
+      <button class="btn-secondary consulting-banner-btn" onclick="openConsulting()">Explore AI Opportunities →</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- SEPARATOR -->
+<hr style="border: none; border-top: 1px solid var(--border); margin: 0;">
+
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
     <div class="section-header">
-      <p class="section-eyebrow">Services</p>
-      <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px); max-width: none;">Everything you need, fully automated</h2>
-      <p class="section-sub" style="white-space: nowrap; max-width: none;">Six core systems that cover the full lead lifecycle — from first contact to closed deal.</p>
+      <p class="section-eyebrow">Implementation</p>
+      <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px); max-width: none;">When something is worth building, I build it.</h2>
+      <p class="section-sub" style="max-width: none;">I design and implement AI systems around the way your business already works.</p>
     </div>
     <div class="services-grid">
 
@@ -1137,8 +1300,8 @@
   <div class="container">
     <div class="section-header">
       <p class="section-eyebrow">How It Works</p>
-      <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px); max-width: none;">Up and running in three steps</h2>
-      <p class="section-sub">From first conversation to live automation — typically 1 to 2 weeks.</p>
+      <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px); max-width: none;">Up and running in three steps.</h2>
+      <p class="section-sub" style="white-space: nowrap; max-width: none;">From first conversation to your AI-powered workflow — typically 1 to 2 weeks.</p>
     </div>
     <div class="steps-grid">
       <div class="steps-rail steps-rail-a">
@@ -1151,7 +1314,7 @@
         <p class="step-num">Step 1</p>
         <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
         <h3 class="step-title">Discovery Call</h3>
-        <p class="step-desc">We spend 45 minutes mapping your business — lead flow, tools, and biggest time drains. Once I understand your operation, I leave ready to build immediately.</p>
+        <p class="step-desc">We spend 45 minutes mapping your business — tools, workflows, and biggest friction points. From there, we decide the right next step — consulting, implementation, or a combination of both.</p>
         <p class="step-meta">Free · No obligation · 45 minutes</p>
       </div>
       <div class="step">
@@ -1170,14 +1333,6 @@
       </div>
     </div>
 
-    <div class="consulting-banner">
-      <div class="consulting-banner-text">
-        <p class="consulting-banner-title">Not ready to build yet?</p>
-        <p class="consulting-banner-sub">I also offer consulting sessions — from explaining what AI automation can do for your business, to auditing your processes and building a roadmap. If you're exploring before you're ready to build, this is a good place to start.</p>
-      </div>
-      <button class="btn-secondary consulting-banner-btn" onclick="openConsulting()">Ask about consulting →</button>
-    </div>
-
   </div>
 </section>
 
@@ -1190,7 +1345,7 @@
       <div class="about-content">
         <p class="eyebrow">About</p>
         <h2 class="about-title">Yev Specter: <span style="color:#86868b">"Your leads deserve faster response than you can give them."</span></h2>
-        <p class="about-text">I'm an AI systems architect & automation specialist focused on one vertical: Real Estate.</p>
+        <p class="about-text">I'm an AI consultant and systems architect, currently focused on helping real estate businesses use AI more effectively.</p>
         <p class="about-text">I help agents, teams, and property businesses turn slow follow-up, scattered lead handling, CRM updates, and manual admin into structured systems that respond faster, qualify better, and run 24/7.</p>
         <p class="about-text">My work sits between strategy and execution: I don't just "add AI." Every system I build gets deployed in a real business and has to prove its value — reliable, maintainable, and actually used by the teams I hand it to.</p>
         <p class="about-text">If your business has repetitive, high-stakes tasks that depend on a human being available at the right moment — that's exactly the problem I solve.</p>
@@ -1205,12 +1360,12 @@
   <div class="container">
     <div class="section-header">
       <p class="section-eyebrow">Case Studies</p>
-      <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px);">Systems in action</h2>
+      <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px);">Systems in action.</h2>
       <p class="section-sub" style="max-width: 700px;">A selection of pilot systems built and deployed for real estate businesses.</p>
     </div>
     <div class="portfolio-carousel-wrapper">
       <button class="carousel-btn" id="carousel-prev" disabled>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
       <div class="portfolio-carousel">
         <div class="portfolio-grid" id="portfolio-track">
@@ -1282,7 +1437,7 @@
         </div>
       </div>
       <button class="carousel-btn" id="carousel-next">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
     </div>
   </div>
@@ -1292,8 +1447,8 @@
 <section id="contact">
   <div class="container">
     <div class="contact-wrapper">
-      <h2 class="contact-title" style="font-size: clamp(20px, 3vw, 46px);">Cut the busywork. Close your leads.</h2>
-      <p class="contact-sub">Tell me where to reach you, and let's start a focused conversation about what's slowing your business down.</p>
+      <h2 class="contact-title" style="font-size: clamp(20px, 3vw, 46px);">What could be working smarter already?</h2>
+      <p class="contact-sub">Tell me what you're working through and we can figure out where AI tools or systems could actually make a difference.</p>
       <div class="contact-form-card">
         <form class="contact-form" onsubmit="handleSubmit(event)">
           <input type="text" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
@@ -1313,10 +1468,10 @@
           </div>
           <div class="form-group">
             <label>Message</label>
-            <textarea id="contact-message" name="message" placeholder="Briefly tell me what is taking too much time, causing leads to slip through, or not working as well as it should."></textarea>
+            <textarea id="contact-message" name="message" placeholder="What's taking too much time, creating friction, or not working as well as you think it could?"></textarea>
           </div>
           <button type="submit" class="form-submit">Get started →</button>
-          <p class="form-note"><span class="online-dot"></span>You'll hear from me within 24 hours. No sales pitch — just a straight conversation about what's worth automating.</p>
+          <p class="form-note"><span class="online-dot"></span>You'll hear from me within 24 hours. No sales pitch — just a straight conversation about where AI can help.</p>
         </form>
       </div>
     </div>
@@ -1333,7 +1488,8 @@
   <div class="footer-inner">
     <span class="footer-logo">Spectertime<span style="color:#86868b">.ai</span></span>
     <div class="footer-links">
-      <a href="#services">Services</a>
+      <a href="#consulting">Consulting</a>
+      <a href="#services">Implementation</a>
       <a href="#how">How It Works</a>
       <a href="#about">About</a>
       <a href="#portfolio">Case Studies</a>
@@ -1649,8 +1805,8 @@
     <button class="modal-close" onclick="closeModal('modal-consulting')">✕</button>
     <div class="modal-body">
       <p class="modal-eyebrow" style="text-align: center;">Consulting session</p>
-      <h3 class="modal-title" style="text-align: center;">Get clarity before you build</h3>
-      <p class="modal-desc" style="margin-bottom: 28px; text-align: center;">Whether you're exploring AI automation, evaluating a specific idea, or trying to understand where to start, tell me what you're working through.</p>
+      <h3 class="modal-title" style="text-align: center;">Find where AI can actually help</h3>
+      <p class="modal-desc" style="margin-bottom: 28px; text-align: center;">Whether you're evaluating a specific AI idea or simply want to understand what could improve your business, tell me what you're working through.</p>
       <form id="consulting-form" class="contact-form" onsubmit="handleConsultingSubmit(event)">
         <div class="form-row">
           <div class="form-group">
@@ -1670,7 +1826,7 @@
           <label for="c-message">Brief context</label>
           <textarea id="c-message" name="message" placeholder="What are you trying to understand, decide, or improve? Share any relevant context, tools you currently use, and the main questions you would like the session to answer." required></textarea>
         </div>
-        <button type="submit" class="btn-primary form-submit" id="consulting-submit" style="width: 60%; justify-content: center; padding: 14px 28px; margin-top: 4px;">Submit →</button>
+        <button type="submit" class="btn-primary form-submit" id="consulting-submit" style="width: 60%; justify-content: center; padding: 14px 28px; margin-top: 4px;">Explore AI Opportunities →</button>
         <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px; line-height: 1.4; text-align: center;">
           <span class="online-dot" style="display: inline-block; vertical-align: middle; margin-right: 7px; margin-bottom: 2px;"></span>I'll personally review your request and reply within 24 hours with the next step.
         </p>
