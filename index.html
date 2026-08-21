@@ -333,9 +333,11 @@
   }
   .modal-body {
     overscroll-behavior: contain;
+    touch-action: pan-y;
   }
   .story-scroll-area {
     overscroll-behavior: contain;
+    touch-action: pan-y;
   }
 
   body.modal-is-open .service-card {
@@ -383,6 +385,7 @@
     opacity: 0; pointer-events: none;
     transition: opacity 0.3s ease;
     cursor: pointer;
+    touch-action: none;
   }
   .modal-overlay.is-open { opacity: 1; pointer-events: auto; }
   .modal {
@@ -1888,14 +1891,18 @@ function _onTouchStart(e) {
   _prevTouchY = e.touches[0].clientY;
 }
 function _blockBgScroll(e) {
-  e.preventDefault();
-  if (e.touches.length !== 1) return;
   const scrollEl = e.target.closest('.modal-body, .story-scroll-area');
-  if (!scrollEl) return;
-  const currentY = e.touches[0].clientY;
-  const dy = currentY - _prevTouchY;
-  _prevTouchY = currentY;
-  scrollEl.scrollTop -= dy;
+  if (scrollEl) {
+    if (e.touches.length !== 1) { e.preventDefault(); return; }
+    const currentY = e.touches[0].clientY;
+    const dy = currentY - _prevTouchY;
+    _prevTouchY = currentY;
+    const atTop = scrollEl.scrollTop <= 0;
+    const atBottom = Math.ceil(scrollEl.scrollTop) + scrollEl.clientHeight >= scrollEl.scrollHeight;
+    if ((atTop && dy > 0) || (atBottom && dy < 0)) e.preventDefault();
+    return;
+  }
+  e.preventDefault();
 }
 function openModal(id) {
   const overlay = document.getElementById(id);
