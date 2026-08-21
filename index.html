@@ -1888,18 +1888,14 @@ function _onTouchStart(e) {
   _prevTouchY = e.touches[0].clientY;
 }
 function _blockBgScroll(e) {
-  const scrollEl = e.target.closest('.modal-body, .story-scroll-area');
-  if (scrollEl) {
-    if (e.touches.length !== 1) { e.preventDefault(); return; }
-    const currentY = e.touches[0].clientY;
-    const dy = currentY - _prevTouchY;
-    _prevTouchY = currentY;
-    const atTop = scrollEl.scrollTop <= 0;
-    const atBottom = Math.ceil(scrollEl.scrollTop) + scrollEl.clientHeight >= scrollEl.scrollHeight;
-    if ((atTop && dy > 0) || (atBottom && dy < 0)) e.preventDefault();
-    return;
-  }
   e.preventDefault();
+  if (e.touches.length !== 1) return;
+  const scrollEl = e.target.closest('.modal-body, .story-scroll-area');
+  if (!scrollEl) return;
+  const currentY = e.touches[0].clientY;
+  const dy = currentY - _prevTouchY;
+  _prevTouchY = currentY;
+  scrollEl.scrollTop -= dy;
 }
 function openModal(id) {
   const overlay = document.getElementById(id);
