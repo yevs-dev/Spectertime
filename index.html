@@ -120,6 +120,7 @@
     color: var(--text); max-width: 880px; margin: 0 auto 24px; text-align: center; width: 100%;
   }
   .hero-title-muted { color: #86868b; }
+  .hero-title-large { font-size: clamp(48px, 7vw, 90px); }
   @media (max-width: 768px) {
     .hero-title { white-space: normal; font-size: clamp(32px, 7vw, 48px); }
     .hero-sub { white-space: normal; font-size: 14px; max-width: 90%; }
@@ -622,6 +623,22 @@
   .step-title { font-size: 20px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 12px; text-align: center; }
   .step-desc { font-size: 15px; color: var(--text-muted); line-height: 1.6; max-width: 260px; margin: 0 auto; }
   .step-meta { font-size: 13px; color: var(--text-faint); margin-top: 12px; max-width: 220px; margin-left: auto; margin-right: auto; }
+  .step-price { font-size: 22px; font-weight: 600; color: var(--text); margin-top: 12px; text-align: center; }
+  .step-info-icon {
+    font-size: 14px; color: var(--text-muted); cursor: default;
+    position: relative; display: inline-block; vertical-align: middle;
+  }
+  .step-info-icon::after {
+    content: attr(data-tooltip);
+    position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    background: #1d1d1f; color: #fff; font-size: 12px; font-weight: 400;
+    line-height: 1.5; padding: 8px 12px; border-radius: 8px;
+    width: 220px; text-align: center; white-space: normal;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+  }
+  .step-info-icon:hover::after { opacity: 1; }
 
   /* ABOUT */
   #about { background: var(--bg); }
@@ -874,6 +891,7 @@
     .hero-avatar { width: 96px; height: 96px; margin-bottom: 16px; }
     .hero-label { font-size: 10px; margin-bottom: 16px; }
     .hero-title { white-space: normal !important; font-size: 32px; letter-spacing: -0.8px; margin-bottom: 16px; }
+    .hero-title-large { font-size: 35px; }
     .hero-sub { white-space: normal !important; font-size: 15px; max-width: 100%; margin-bottom: 28px; }
     .hero-actions { gap: 10px; }
     .btn-primary, .btn-secondary { font-size: 14px; padding: 12px 22px; }
@@ -1020,7 +1038,7 @@
       <img src="yev 3.jpg" alt="Yev Specter">
     </div>
     <p class="hero-label">AI Consulting · Systems · Real Estate</p>
-    <h1 class="hero-title"><span style="white-space:nowrap">Automate your Real Estate.</span><br><span class="hero-title-muted">Keep every lead.</span></h1>
+    <h1 class="hero-title"><span class="hero-title-large" style="white-space:nowrap">AI where it matters.</span><br><span class="hero-title-muted">Systems that help.</span></h1>
     <p class="hero-sub">I'm Yev — a tech founder with a background in real estate development. I help real estate businesses understand where AI can make a difference, choose the right tools, and build the systems that improve the way they work.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Book a Free Call</a>
@@ -1305,8 +1323,8 @@
   <div class="container">
     <div class="section-header">
       <p class="section-eyebrow">How It Works</p>
-      <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px); max-width: none;">Up and running in three steps.</h2>
-      <p class="section-sub" style="white-space: nowrap; max-width: none;">From first conversation to your AI-powered workflow — typically 1 to 2 weeks.</p>
+      <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px); max-width: none;">From first conversation to the right next step.</h2>
+      <p class="section-sub" style="white-space: nowrap; max-width: none;">A short fit call first. Deeper analysis only when it's worth it. Implementation only when the case is clear.</p>
     </div>
     <div class="steps-grid">
       <div class="steps-rail steps-rail-a">
@@ -1318,23 +1336,24 @@
       <div class="step">
         <p class="step-num">Step 1</p>
         <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-        <h3 class="step-title">Discovery Call</h3>
-        <p class="step-desc">We spend 45 minutes mapping your business — tools, workflows, and biggest friction points. From there, we decide the right next step — consulting, implementation, or a combination of both.</p>
-        <p class="step-meta">Free · No obligation · 45 minutes</p>
+        <h3 class="step-title">20-Minute Fit Call</h3>
+        <p class="step-desc">We start with a short conversation about what you're trying to improve, where things feel inefficient, and what you're already using. The goal is to see whether there's something worth exploring together.</p>
+        <p class="step-meta">Free · No obligation · 20 minutes</p>
       </div>
       <div class="step">
         <p class="step-num">Step 2</p>
-        <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-        <h3 class="step-title">Build & Integrate</h3>
-        <p class="step-desc">I build your automation system from scratch, fully integrated with your existing tools. The process is transparent — you get progress updates at every stage.</p>
-        <p class="step-meta">Typical build time: 5–10 business days</p>
+        <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg></div>
+        <h3 class="step-title">AI Opportunity Review <span class="step-info-icon" data-tooltip="If the implementation opportunity is already clear, we skip this step and go straight to scope.">ⓘ</span></h3>
+        <p class="step-desc">If the opportunity needs a deeper look, we spend 45 minutes going through the relevant workflows, tools, and pain points. I then analyze the options and come back with a focused recommendation: what to use, improve, automate, build — or leave alone.</p>
+        <p class="step-price">$250</p>
+        <p class="step-meta">Diagnostic + analysis + review call</p>
       </div>
       <div class="step">
         <p class="step-num">Step 3</p>
-        <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12H19M12 5l7 7-7 7"/></svg></div>
-        <h3 class="step-title">Launch & Own It</h3>
-        <p class="step-desc">Your system goes live. I walk you through everything, hand over full documentation, and stay available for 30 days of refinements and support.</p>
-        <p class="step-meta">Includes: handover, docs, 30-day support</p>
+        <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3 class="step-title">Build & Implement</h3>
+        <p class="step-desc">If there's something worth building, I scope and implement the system around your existing tools and workflow. You get a working solution, documentation, handover, and support after launch.</p>
+        <p class="step-meta">Scoped separately · Typical builds: 1–2 weeks</p>
       </div>
     </div>
 
