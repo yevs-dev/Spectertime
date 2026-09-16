@@ -193,7 +193,7 @@
     padding: 22px 52px;
     white-space: nowrap;
   }
-  .stat-num { font-size: 28px; font-weight: 600; letter-spacing: -0.025em; color: var(--text); line-height: 1; }
+  .stat-num { font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text); line-height: 1; }
   .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 5px; }
 
   /* SERVICES */
@@ -577,7 +577,12 @@
     background: var(--white); border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: 36px 48px;
-    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+    display: flex; flex-direction: column; gap: 0;
+    position: relative;
+  }
+  .consulting-banner-top {
+    display: flex; align-items: flex-start; gap: 40px;
+    padding-right: 220px;
   }
   .consulting-banner-text { flex: 1; }
   .consulting-banner-title {
@@ -586,7 +591,31 @@
   .consulting-banner-sub {
     font-size: 14px; color: var(--text-muted); line-height: 1.6; max-width: 560px;
   }
-  .consulting-banner-btn { white-space: nowrap; flex-shrink: 0; }
+  .consulting-banner-btn {
+    white-space: nowrap; flex-shrink: 0;
+    position: absolute; top: 36px; right: 48px;
+  }
+  .consulting-banner-divider {
+    border: none; border-top: 1px solid var(--border); margin: 28px 0;
+  }
+  .consulting-banner-cols {
+    display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0;
+  }
+  .consulting-banner-col-sep {
+    background: var(--border); width: 1px;
+  }
+  .consulting-banner-col { padding: 0 32px; }
+  .consulting-banner-col:first-child { padding-left: 0; }
+  .consulting-banner-col:last-child { padding-right: 0; }
+  .consulting-col-title {
+    font-size: 20px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 5px;
+  }
+  .consulting-col-sub {
+    font-size: 15px; font-weight: 600; color: var(--text-muted); margin-bottom: 10px;
+  }
+  .consulting-col-desc {
+    font-size: 15px; color: var(--text-muted); line-height: 1.6;
+  }
   .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; position: relative; }
   .steps-rail {
     position: absolute; top: 77px;
@@ -917,8 +946,14 @@
 
     .steps-grid { grid-template-columns: 1fr; gap: 28px; }
     .steps-rail-a, .steps-rail-b { display: none; }
-    .consulting-banner { flex-direction: column; align-items: center; gap: 20px; padding: 28px 24px; text-align: center; }
-    .consulting-banner-btn { width: auto; align-self: center; }
+    .consulting-banner { padding: 28px 24px; text-align: left; overflow: hidden; }
+    .consulting-banner-top { flex-direction: column; gap: 0; padding-right: 0; }
+    .consulting-banner-title { white-space: normal; }
+    .consulting-banner-sub { white-space: normal !important; }
+    .consulting-banner-btn { position: static; width: auto; align-self: flex-start; margin-top: 20px; }
+    .consulting-banner-cols { grid-template-columns: 1fr; gap: 24px; }
+    .consulting-banner-col-sep { display: none; }
+    .consulting-banner-col { padding: 0; }
     .step-icon { width: 56px; height: 56px; font-size: 22px; margin-bottom: 16px; }
     .step-title { font-size: 17px; }
     .step-desc { font-size: 14px; }
@@ -969,7 +1004,7 @@
     .stats-bar { border-top: 1px solid var(--border); height: 80px; }
     .ticker-track, .ticker-set { align-items: center; height: 100%; }
     .stat-item { padding: 0 32px; height: 100%; justify-content: center; }
-    .stat-num { font-size: 22px; }
+    .stat-num { font-size: 11px; }
     .stat-label { font-size: 12px; }
 
     .contact-title { white-space: normal !important; max-width: 100% !important; font-size: 24px !important; letter-spacing: -0.5px; }
@@ -1043,7 +1078,7 @@
     <p class="hero-sub">I'm Yev — I help businesses connect what already works with what AI now makes possible — from finding the right opportunities to putting the right tools, workflows and systems in place.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Book a 20-min Call</a>
-      <a href="#services" class="btn-secondary">See the Approach</a>
+      <a href="#consulting" class="btn-secondary">See the Approach</a>
     </div>
   </div>
 </section>
@@ -1053,23 +1088,23 @@
   <div class="ticker-track">
     <!-- Set 1 -->
     <div class="ticker-set">
-      <div class="stat-item"><div class="stat-num">&lt; 90s</div><div class="stat-label">average lead response time</div></div>
-      <div class="stat-item"><div class="stat-num">80%+</div><div class="stat-label">manual tasks eliminated</div></div>
-      <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">automation running non-stop</div></div>
-      <div class="stat-item"><div class="stat-num">5×</div><div class="stat-label">more leads contacted same day</div></div>
-      <div class="stat-item"><div class="stat-num">0</div><div class="stat-label">leads lost to missed calls</div></div>
-      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">of leads logged in your CRM</div></div>
-      <div class="stat-item"><div class="stat-num">30 days</div><div class="stat-label">post-launch support included</div></div>
+      <div class="stat-item"><div class="stat-num">AI Opportunities</div><div class="stat-label">find where it fits</div></div>
+      <div class="stat-item"><div class="stat-num">Tool Selection</div><div class="stat-label">use what already exists</div></div>
+      <div class="stat-item"><div class="stat-num">AI Adoption</div><div class="stat-label">go beyond chat</div></div>
+      <div class="stat-item"><div class="stat-num">Workflow Design</div><div class="stat-label">improve how work happens</div></div>
+      <div class="stat-item"><div class="stat-num">Automation</div><div class="stat-label">remove repetitive work</div></div>
+      <div class="stat-item"><div class="stat-num">Knowledge Systems</div><div class="stat-label">make expertise usable</div></div>
+      <div class="stat-item"><div class="stat-num">Custom AI</div><div class="stat-label">build when it makes sense</div></div>
     </div>
     <!-- Set 2 — identical, creates seamless loop -->
     <div class="ticker-set">
-      <div class="stat-item"><div class="stat-num">&lt; 90s</div><div class="stat-label">average lead response time</div></div>
-      <div class="stat-item"><div class="stat-num">80%+</div><div class="stat-label">manual tasks eliminated</div></div>
-      <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">automation running non-stop</div></div>
-      <div class="stat-item"><div class="stat-num">5×</div><div class="stat-label">more leads contacted same day</div></div>
-      <div class="stat-item"><div class="stat-num">0</div><div class="stat-label">leads lost to missed calls</div></div>
-      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">of leads logged in your CRM</div></div>
-      <div class="stat-item"><div class="stat-num">30 days</div><div class="stat-label">post-launch support included</div></div>
+      <div class="stat-item"><div class="stat-num">AI Opportunities</div><div class="stat-label">find where it fits</div></div>
+      <div class="stat-item"><div class="stat-num">Tool Selection</div><div class="stat-label">use what already exists</div></div>
+      <div class="stat-item"><div class="stat-num">AI Adoption</div><div class="stat-label">go beyond chat</div></div>
+      <div class="stat-item"><div class="stat-num">Workflow Design</div><div class="stat-label">improve how work happens</div></div>
+      <div class="stat-item"><div class="stat-num">Automation</div><div class="stat-label">remove repetitive work</div></div>
+      <div class="stat-item"><div class="stat-num">Knowledge Systems</div><div class="stat-label">make expertise usable</div></div>
+      <div class="stat-item"><div class="stat-num">Custom AI</div><div class="stat-label">build when it makes sense</div></div>
     </div>
   </div>
 </div>
@@ -1090,7 +1125,7 @@
           </svg>
         </div>
         <h3 class="service-title">Cut Through the Noise</h3>
-        <p class="service-desc">AI is moving faster than most business owners have time to follow. I help you understand what actually matters for your business.</p>
+        <p class="service-desc">AI is moving faster than most business owners have time to follow. I help you understand what matters, what doesn't, and where to start.</p>
       </div>
       <div class="service-card consulting-card">
         <div class="service-icon">
@@ -1099,7 +1134,7 @@
           </svg>
         </div>
         <h3 class="service-title">Find the Leverage</h3>
-        <p class="service-desc">I look at how you work today — your tools, workflows, repetitive tasks, customer journey and team handoffs — and identify where AI can genuinely improve the operation.</p>
+        <p class="service-desc">I look at how work actually happens — your tools, workflows, repetitive tasks, handoffs, and knowledge — and identify where AI can genuinely improve it.</p>
       </div>
     </div>
 
@@ -1139,9 +1174,25 @@
     </div>
 
     <div class="consulting-banner">
-      <div class="consulting-banner-text">
-        <p class="consulting-banner-title">You may be doing work AI no longer needs you to do.</p>
-        <p class="consulting-banner-sub">I look at how your business works today and identify where new AI tools, better processes, or automation can create real leverage — without disrupting what already works.</p>
+      <div class="consulting-banner-top">
+        <div class="consulting-banner-text">
+          <p class="consulting-banner-title">Not sure where to start — or already using AI and want to go further?</p>
+          <p class="consulting-banner-sub" style="white-space:nowrap">I help you understand where AI can create real leverage in your business, then put it to work.</p>
+        </div>
+      </div>
+      <hr class="consulting-banner-divider">
+      <div class="consulting-banner-cols">
+        <div class="consulting-banner-col">
+          <h4 class="consulting-col-title">AI Opportunity Review</h4>
+          <p class="consulting-col-sub">Find the opportunities.</p>
+          <p class="consulting-col-desc">A focused look at how your business works today, followed by clear recommendations on what to use, improve, automate, or leave alone.</p>
+        </div>
+        <div class="consulting-banner-col-sep"></div>
+        <div class="consulting-banner-col">
+          <h4 class="consulting-col-title">AI Enablement</h4>
+          <p class="consulting-col-sub">Put AI to work.</p>
+          <p class="consulting-col-desc">Hands-on help using the right tools, improving workflows, and bringing AI into the way you and your team actually work.</p>
+        </div>
       </div>
       <button class="btn-secondary consulting-banner-btn" onclick="openConsulting()">Explore AI Opportunities →</button>
     </div>
@@ -1163,37 +1214,9 @@
     <div class="services-grid">
 
       <div class="service-card">
-        <div class="card-hover-overlay"><button class="card-watch-btn" onclick="openModal('modal-1')"><svg width="12" height="12" viewBox="0 0 12 12" fill="white"><polygon points="3,1 11,6 3,11"/></svg>Watch Demo</button></div>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-        <h3 class="service-title">Lead Qualification</h3>
-        <p class="service-desc">Inbound leads from portals, ads, and forms — scored by intent, filtered by criteria, and routed to the right agent instantly. Only serious buyers and sellers reach your team.</p>
-        <div class="service-detail">
-          <p class="service-detail-label">Works with</p>
-          <div class="tool-chips">
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=32" alt="Make">Make</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=32" alt="n8n">n8n</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=32" alt="Zapier">Zapier</span>
-            <span class="tool-chip"><svg width="14" height="9" viewBox="0 0 122.3 80.3" xmlns="http://www.w3.org/2000/svg"><path fill="#1A1A19" d="M94.3,0H65.4c-26,0-28,11.2-28,26.2l0,27.9c0,15.6,2,26.2,28.1,26.2h28.8c26,0,28-11.2,28-26.1V26.2C122.3,11.2,120.3,0,94.3,0z M0,20.1C0,6.9,5.2,0,14,0c8.8,0,14,6.9,14,20.1v40.1c0,13.2-5.2,20.1-14,20.1c-8.8,0-14-6.9-14-20.1V20.1z"/></svg>Typeform</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=tally.so&sz=32" alt="Tally">Tally</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=jotform.com&sz=32" alt="JotForm">JotForm</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="Google Forms">Google Forms</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" alt="OpenAI">OpenAI</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" alt="Claude">Claude API</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=pipedrive.com&sz=32" alt="Pipedrive">Pipedrive</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=32" alt="HubSpot">HubSpot</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=facebook.com&sz=32" alt="Facebook">Facebook Ads</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=zoopla.co.uk&sz=32" alt="Zoopla">Zoopla</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=32" alt="GoHighLevel">GoHighLevel</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=rightmove.co.uk&sz=32" alt="Rightmove">Rightmove</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="card-hover-overlay"><button class="card-watch-btn" disabled style="background:rgba(120,120,120,0.55);cursor:default;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h14M5 22h14M6 2v6l4 4-4 4v6M18 2v6l-4 4 4 4v6"/></svg>Watch Demo</button></div>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
-        <h3 class="service-title">CRM Automation</h3>
-        <p class="service-desc">Contacts, deals, tasks, and follow-up sequences created automatically in your CRM — without anyone touching a keyboard. Your pipeline stays accurate and up to date, always.</p>
+<div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <h3 class="service-title">Workflow Automation</h3>
+        <p class="service-desc">Connect the tools you already use and remove repetitive steps, handoffs, and manual admin.</p>
         <div class="service-detail">
           <p class="service-detail-label">Works with</p>
           <div class="tool-chips">
@@ -1203,114 +1226,110 @@
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=pipedrive.com&sz=32" alt="Pipedrive">Pipedrive</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=32" alt="HubSpot">HubSpot</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=activecampaign.com&sz=32" alt="ActiveCampaign">ActiveCampaign</span>
+            <span class="tool-chip"><svg width="14" height="9" viewBox="0 0 122.3 80.3" xmlns="http://www.w3.org/2000/svg"><path fill="#1A1A19" d="M94.3,0H65.4c-26,0-28,11.2-28,26.2l0,27.9c0,15.6,2,26.2,28.1,26.2h28.8c26,0,28-11.2,28-26.1V26.2C122.3,11.2,120.3,0,94.3,0z M0,20.1C0,6.9,5.2,0,14,0c8.8,0,14,6.9,14,20.1v40.1c0,13.2-5.2,20.1-14,20.1c-8.8,0-14-6.9-14-20.1V20.1z"/></svg>Typeform</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=tally.so&sz=32" alt="Tally">Tally</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=32" alt="GoHighLevel">GoHighLevel</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=followupboss.com&sz=32" alt="Follow Up Boss">Follow Up Boss</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" alt="OpenAI">OpenAI</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" alt="Claude">Claude API</span>
           </div>
         </div>
       </div>
 
       <div class="service-card">
-        <div class="card-hover-overlay"><button class="card-watch-btn" disabled style="background:rgba(120,120,120,0.55);cursor:default;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h14M5 22h14M6 2v6l4 4-4 4v6M18 2v6l-4 4 4 4v6"/></svg>Watch Demo</button></div>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="12" y1="15" x2="12" y2="15"/><line x1="16" y1="15" x2="16" y2="15"/></svg></div>
-        <h3 class="service-title">AI Chatbot & Follow-Up</h3>
-        <p class="service-desc">Conversational AI agents on your website or WhatsApp that qualify buyers, answer property questions, and book viewings around the clock — without a human in the loop.</p>
+<div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+        <h3 class="service-title">AI Assistants &amp; Agents</h3>
+        <p class="service-desc">AI that can handle specific tasks, conversations, research, or internal workflows around clear rules and context.</p>
         <div class="service-detail">
           <p class="service-detail-label">Works with</p>
           <div class="tool-chips">
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=32" alt="Make">Make</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=32" alt="n8n">n8n</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=32" alt="Zapier">Zapier</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" alt="OpenAI">OpenAI</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" alt="Claude">Claude API</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=voiceflow.com&sz=32" alt="Voiceflow">Voiceflow</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=32" alt="Make">Make</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=32" alt="n8n">n8n</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=32" alt="Zapier">Zapier</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=telegram.org&sz=32" alt="Telegram">Telegram</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=32" alt="WhatsApp">WhatsApp</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=pipedrive.com&sz=32" alt="Pipedrive">Pipedrive</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=32" alt="HubSpot">HubSpot</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=32" alt="GoHighLevel">GoHighLevel</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=activecampaign.com&sz=32" alt="ActiveCampaign">ActiveCampaign</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=cal.com&sz=32" alt="Cal.com">Cal.com</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=calendly.com&sz=32" alt="Calendly">Calendly</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=twilio.com&sz=32" alt="Twilio">Twilio</span>
           </div>
         </div>
       </div>
 
       <div class="service-card">
-        <div class="card-hover-overlay"><button class="card-watch-btn" disabled style="background:rgba(120,120,120,0.55);cursor:default;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h14M5 22h14M6 2v6l4 4-4 4v6M18 2v6l-4 4 4 4v6"/></svg>Watch Demo</button></div>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-        <h3 class="service-title">Missed-Call Text-Back</h3>
-        <p class="service-desc">Every missed call triggers an instant, personalized SMS that re-engages the prospect and moves them toward a booking. You never lose a lead because no one picked up.</p>
+<div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <h3 class="service-title">Knowledge Systems</h3>
+        <p class="service-desc">Turn documents, procedures, conversations, and company knowledge into something your team can actually use.</p>
         <div class="service-detail">
           <p class="service-detail-label">Works with</p>
           <div class="tool-chips">
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" alt="OpenAI">OpenAI</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" alt="Claude">Claude API</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=32" alt="Make">Make</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=32" alt="n8n">n8n</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=32" alt="Zapier">Zapier</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=twilio.com&sz=32" alt="Twilio">Twilio</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=telegram.org&sz=32" alt="Telegram">Telegram</span>
+            <span class="tool-chip"><svg width="14" height="9" viewBox="0 0 122.3 80.3" xmlns="http://www.w3.org/2000/svg"><path fill="#1A1A19" d="M94.3,0H65.4c-26,0-28,11.2-28,26.2l0,27.9c0,15.6,2,26.2,28.1,26.2h28.8c26,0,28-11.2,28-26.1V26.2C122.3,11.2,120.3,0,94.3,0z M0,20.1C0,6.9,5.2,0,14,0c8.8,0,14,6.9,14,20.1v40.1c0,13.2-5.2,20.1-14,20.1c-8.8,0-14-6.9-14-20.1V20.1z"/></svg>Typeform</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=tally.so&sz=32" alt="Tally">Tally</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="Google Forms">Google Forms</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=voiceflow.com&sz=32" alt="Voiceflow">Voiceflow</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+<div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3 class="service-title">Customer Communication</h3>
+        <p class="service-desc">Build smarter ways to respond, qualify, follow up, answer questions, and route conversations across channels.</p>
+        <div class="service-detail">
+          <p class="service-detail-label">Works with</p>
+          <div class="tool-chips">
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" alt="OpenAI">OpenAI</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" alt="Claude">Claude API</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=voiceflow.com&sz=32" alt="Voiceflow">Voiceflow</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=activecampaign.com&sz=32" alt="ActiveCampaign">ActiveCampaign</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=32" alt="WhatsApp">WhatsApp</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=telegram.org&sz=32" alt="Telegram">Telegram</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=twilio.com&sz=32" alt="Twilio">Twilio</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=pipedrive.com&sz=32" alt="Pipedrive">Pipedrive</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=32" alt="HubSpot">HubSpot</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+<div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <h3 class="service-title">CRM &amp; Operations</h3>
+        <p class="service-desc">Keep information moving between people and systems, update records automatically, and make workflows easier to manage.</p>
+        <div class="service-detail">
+          <p class="service-detail-label">Works with</p>
+          <div class="tool-chips">
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=pipedrive.com&sz=32" alt="Pipedrive">Pipedrive</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=32" alt="HubSpot">HubSpot</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=32" alt="GoHighLevel">GoHighLevel</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=activecampaign.com&sz=32" alt="ActiveCampaign">ActiveCampaign</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=followupboss.com&sz=32" alt="Follow Up Boss">Follow Up Boss</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="card-hover-overlay"><button class="card-watch-btn" disabled style="background:rgba(120,120,120,0.55);cursor:default;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h14M5 22h14M6 2v6l4 4-4 4v6M18 2v6l-4 4 4 4v6"/></svg>Watch Demo</button></div>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <h3 class="service-title">Appointment-Setting Systems</h3>
-        <p class="service-desc">Qualified leads land directly on your calendar — no back-and-forth, no manual scheduling. Reminders, confirmations, and rescheduling handled automatically.</p>
-        <div class="service-detail">
-          <p class="service-detail-label">Works with</p>
-          <div class="tool-chips">
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=32" alt="Make">Make</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=32" alt="n8n">n8n</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=32" alt="Zapier">Zapier</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=cal.com&sz=32" alt="Cal.com">Cal.com</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=calendly.com&sz=32" alt="Calendly">Calendly</span>
             <span class="tool-chip"><svg width="14" height="9" viewBox="0 0 122.3 80.3" xmlns="http://www.w3.org/2000/svg"><path fill="#1A1A19" d="M94.3,0H65.4c-26,0-28,11.2-28,26.2l0,27.9c0,15.6,2,26.2,28.1,26.2h28.8c26,0,28-11.2,28-26.1V26.2C122.3,11.2,120.3,0,94.3,0z M0,20.1C0,6.9,5.2,0,14,0c8.8,0,14,6.9,14,20.1v40.1c0,13.2-5.2,20.1-14,20.1c-8.8,0-14-6.9-14-20.1V20.1z"/></svg>Typeform</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=tally.so&sz=32" alt="Tally">Tally</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="Google Forms">Google Forms</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=telegram.org&sz=32" alt="Telegram">Telegram</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=32" alt="WhatsApp">WhatsApp</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=pipedrive.com&sz=32" alt="Pipedrive">Pipedrive</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=32" alt="HubSpot">HubSpot</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=32" alt="GoHighLevel">GoHighLevel</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=activecampaign.com&sz=32" alt="ActiveCampaign">ActiveCampaign</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=acuityscheduling.com&sz=32" alt="Acuity">Acuity Scheduling</span>
           </div>
         </div>
       </div>
 
       <div class="service-card">
-        <div class="card-hover-overlay"><button class="card-watch-btn" disabled style="background:rgba(120,120,120,0.55);cursor:default;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h14M5 22h14M6 2v6l4 4-4 4v6M18 2v6l-4 4 4 4v6"/></svg>Watch Demo</button></div>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2"/></svg></div>
-        <h3 class="service-title">Workflow Automation</h3>
-        <p class="service-desc">Custom pipelines that connect your portals, CRM, email platform, and calendar into a single automated operation — so every tool talks to every other tool.</p>
+<div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+        <h3 class="service-title">Custom AI Workflows</h3>
+        <p class="service-desc">When an off-the-shelf tool isn't enough, I design a workflow or system around the way your business actually operates.</p>
         <div class="service-detail">
           <p class="service-detail-label">Works with</p>
           <div class="tool-chips">
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=32" alt="Make">Make</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=32" alt="n8n">n8n</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=32" alt="Zapier">Zapier</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=32" alt="OpenAI">OpenAI</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=32" alt="Claude">Claude API</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=make.com&sz=32" alt="Make">Make</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=n8n.io&sz=32" alt="n8n">n8n</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=zapier.com&sz=32" alt="Zapier">Zapier</span>
+            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=voiceflow.com&sz=32" alt="Voiceflow">Voiceflow</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=pipedrive.com&sz=32" alt="Pipedrive">Pipedrive</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=32" alt="HubSpot">HubSpot</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=32" alt="GoHighLevel">GoHighLevel</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=telegram.org&sz=32" alt="Telegram">Telegram</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=32" alt="WhatsApp">WhatsApp</span>
-            <span class="tool-chip"><svg width="14" height="9" viewBox="0 0 122.3 80.3" xmlns="http://www.w3.org/2000/svg"><path fill="#1A1A19" d="M94.3,0H65.4c-26,0-28,11.2-28,26.2l0,27.9c0,15.6,2,26.2,28.1,26.2h28.8c26,0,28-11.2,28-26.1V26.2C122.3,11.2,120.3,0,94.3,0z M0,20.1C0,6.9,5.2,0,14,0c8.8,0,14,6.9,14,20.1v40.1c0,13.2-5.2,20.1-14,20.1c-8.8,0-14-6.9-14-20.1V20.1z"/></svg>Typeform</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=tally.so&sz=32" alt="Tally">Tally</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="Google Forms">Google Forms</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=cal.com&sz=32" alt="Cal.com">Cal.com</span>
-            <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=calendly.com&sz=32" alt="Calendly">Calendly</span>
             <span class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=activecampaign.com&sz=32" alt="ActiveCampaign">ActiveCampaign</span>
+            <span class="tool-chip"><svg width="14" height="9" viewBox="0 0 122.3 80.3" xmlns="http://www.w3.org/2000/svg"><path fill="#1A1A19" d="M94.3,0H65.4c-26,0-28,11.2-28,26.2l0,27.9c0,15.6,2,26.2,28.1,26.2h28.8c26,0,28-11.2,28-26.1V26.2C122.3,11.2,120.3,0,94.3,0z M0,20.1C0,6.9,5.2,0,14,0c8.8,0,14,6.9,14,20.1v40.1c0,13.2-5.2,20.1-14,20.1c-8.8,0-14-6.9-14-20.1V20.1z"/></svg>Typeform</span>
           </div>
         </div>
       </div>
@@ -1338,23 +1357,23 @@
         <p class="step-num">Step 1</p>
         <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
         <h3 class="step-title">Free 20-min Intro Call</h3>
-        <p class="step-desc">We start with a short conversation about what you're trying to improve, where things feel inefficient, and where AI might actually help. The goal is to see whether there's something worth exploring together.</p>
+        <p class="step-desc">We start with a short conversation about your business, what you're trying to improve, and how you're using AI today. The goal is to see whether there's something worth exploring together.</p>
         <p class="step-meta">No obligation · 20 minutes</p>
       </div>
       <div class="step">
         <p class="step-num">Step 2</p>
         <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg></div>
         <h3 class="step-title">AI Opportunity Review <span class="step-info-icon" data-tooltip="If the implementation opportunity is already clear, we skip this step and go straight to scope.">ⓘ</span></h3>
-        <p class="step-desc">If the opportunity needs a deeper look, we spend 45 minutes going through the relevant workflows, tools, and pain points. I then analyze the options and come back with a focused recommendation: what to use, improve, automate, build — or leave alone.</p>
+        <p class="step-desc">If the opportunity needs a deeper look, we spend 45 minutes going through the relevant workflows, tools, and pain points. I then analyze the options and come back with clear recommendations on what to use, improve, automate, build — or leave alone.</p>
         <p class="step-price">$250</p>
         <p class="step-meta">Diagnostic + analysis + review call</p>
       </div>
       <div class="step">
         <p class="step-num">Step 3</p>
-        <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-        <h3 class="step-title">Build & Implement</h3>
-        <p class="step-desc">If there's something worth building, I scope and implement the system around your existing tools and workflow. You get a working solution, documentation, handover, and support after launch.</p>
-        <p class="step-meta">Scoped separately · Typical builds: 1–2 weeks</p>
+        <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
+        <h3 class="step-title">Put It to Work</h3>
+        <p class="step-desc">Once the right direction is clear, I can help you put it into practice — whether that means adopting the right tools, improving a workflow, enabling your team, automating a process, or building something custom.</p>
+        <p class="step-meta">Scoped separately · Based on what the business actually needs</p>
       </div>
     </div>
 
@@ -1369,11 +1388,11 @@
       <div class="about-img"><img src="yev 2.jpg" alt="Yev Specter"></div>
       <div class="about-content">
         <p class="eyebrow">About</p>
-        <h2 class="about-title">Yev Specter: <span style="color:#86868b">"Your leads deserve faster response than you can give them."</span></h2>
-        <p class="about-text">I'm an AI consultant and systems architect, currently focused on helping real estate businesses use AI more effectively.</p>
-        <p class="about-text">I help agents, teams, and property businesses turn slow follow-up, scattered lead handling, CRM updates, and manual admin into structured systems that respond faster, qualify better, and run 24/7.</p>
-        <p class="about-text">My work sits between strategy and execution: I don't just "add AI." Every system I build gets deployed in a real business and has to prove its value — reliable, maintainable, and actually used by the teams I hand it to.</p>
-        <p class="about-text">If your business has repetitive, high-stakes tasks that depend on a human being available at the right moment — that's exactly the problem I solve.</p>
+        <h2 class="about-title">Yev Specter: <span style="color:#86868b">"I've operated businesses, not just advised them."</span></h2>
+        <p class="about-text">I'm an AI consultant and systems architect, but I come at this from the operator side.</p>
+        <p class="about-text">Before Spectertime, I built and ran businesses across real estate development, technology, e-commerce, and customer-facing operations. I've dealt with customers, teams, software, vendors, sales, processes, and all the messy work that happens between them.</p>
+        <p class="about-text">That's why I don't start with AI. I start with how the business actually works, what already works well, and where new capabilities could create real leverage.</p>
+        <p class="about-text">Sometimes the answer is a better tool. Sometimes it's a different process, AI enablement, automation, or something custom. The goal is always the same: <strong>bring AI into the business without disrupting what already works.</strong></p>
         <div class="about-cta"><button class="btn btn-secondary" style="margin-top: 16px;" onclick="openModal('modal-story')">My story & approach →</button></div>
       </div>
     </div>
@@ -1386,7 +1405,7 @@
     <div class="section-header">
       <p class="section-eyebrow">Case Studies</p>
       <h2 class="section-title" style="font-size: clamp(20px, 3vw, 46px);">Systems in action.</h2>
-      <p class="section-sub" style="max-width: 700px;">A selection of pilot systems built and deployed for real estate businesses.</p>
+      <p class="section-sub" style="max-width: 700px;">A selection of AI systems and workflows deployed across different business types.</p>
     </div>
     <div class="portfolio-carousel-wrapper">
       <button class="carousel-btn" id="carousel-prev" disabled>
@@ -1398,64 +1417,80 @@
           <div class="portfolio-card">
             <div class="portfolio-stat">
               <div class="stat-before-after">
-                <div class="stat-val">4 hrs</div>
+                <div class="stat-val" style="font-size:28.5px;">45 min</div>
                 <div class="stat-arrow-icon">→</div>
-                <div class="stat-val stat-val--after">&lt; 2 min</div>
+                <div class="stat-val stat-val--after" style="font-size:28.5px;">~3 min</div>
               </div>
-              <p class="stat-label">average lead response time</p>
+              <p class="stat-label">product listing workflow</p>
+            </div>
+            <div class="portfolio-body">
+              <p class="portfolio-tag">E-commerce Automation</p>
+              <h3 class="portfolio-title">Product Listing Automation — Specialist E-commerce Store</h3>
+              <p class="portfolio-desc">A simple intake form triggers the full product-creation workflow: AI-written content, variants, SKUs, attributes, filters, tags, and a complete WooCommerce draft ready for review. The owner stays in control of what gets published.</p>
+            </div>
+          </div>
+
+          <div class="portfolio-card">
+            <div class="portfolio-stat">
+              <div class="stat-before-after" style="flex-wrap:wrap; gap:6px 4px; justify-content:center;">
+                <div class="stat-val" style="font-size:13px; letter-spacing:0.06em;">LEAD</div>
+                <div class="stat-arrow-icon">→</div>
+                <div class="stat-val" style="font-size:13px; letter-spacing:0.06em;">NURTURED</div>
+                <div class="stat-arrow-icon">→</div>
+                <div class="stat-val" style="font-size:13px; letter-spacing:0.06em;">QUALIFIED</div>
+                <div class="stat-arrow-icon">→</div>
+                <div class="stat-val stat-val--after" style="font-size:13px; letter-spacing:0.06em;">BOOKED</div>
+              </div>
+              <p class="stat-label">full funnel automated</p>
             </div>
             <div class="portfolio-body">
               <p class="portfolio-tag">Lead Automation</p>
-              <h3 class="portfolio-title">5-Portal Lead Pipeline — UK Property Agency</h3>
-              <p class="portfolio-desc">Leads from five portals were tracked manually in spreadsheets. Built an automated intake pipeline: captured, AI-scored by intent, routed to the right agent, and entered into the CRM with a follow-up sequence — all within 90 seconds of submission.</p>
+              <h3 class="portfolio-title">Lead Qualification & Booking — B2B Services Business</h3>
+              <p class="portfolio-desc">A complete lead journey that captures new prospects, nurtures them automatically, qualifies them based on fit, and routes the right ones into a booked call. Behind the scenes, the system also updates the CRM, moves the deal through the pipeline, logs activities, applies tags, and triggers reminders without manual handoffs.</p>
             </div>
           </div>
 
           <div class="portfolio-card">
             <div class="portfolio-stat">
-              <div class="stat-big"><span class="stat-big-arrow">↓</span>85%</div>
-              <p class="stat-label">reduction in manual CRM work per lead</p>
+              <div class="stat-big" style="font-size:clamp(14px,2.5vw,22px); letter-spacing:0.04em;">24/7 PERSONAL COACHING</div>
+              <p class="stat-label">personalized daily coaching</p>
             </div>
             <div class="portfolio-body">
-              <p class="portfolio-tag">CRM Automation</p>
-              <h3 class="portfolio-title">Full CRM Automation — Independent Brokerage</h3>
-              <p class="portfolio-desc">Agents were manually creating contacts, logging calls, and setting follow-up tasks after every lead. Built a complete automation layer: lead form → contact created → deal opened → task assigned → email sequence triggered. One submission, zero manual steps.</p>
+              <p class="portfolio-tag">AI Assistant</p>
+              <h3 class="portfolio-title">AI Health Coach — Nutrition & Fitness Practice</h3>
+              <p class="portfolio-desc">A Telegram-based AI health coach that tracks meals, weight, sleep, and workouts, then delivers personalized morning and evening summaries. Apple Health provides activity and recovery data while AI handles interpretation and coaching feedback.</p>
             </div>
           </div>
 
           <div class="portfolio-card">
             <div class="portfolio-stat">
-              <div class="stat-big"><span class="stat-big-arrow">↑</span>3×</div>
-              <p class="stat-label">reply rate on dormant leads</p>
+              <div class="stat-before-after">
+                <div class="stat-val" style="font-size:15px; letter-spacing:0.06em;">IDEA</div>
+                <div class="stat-arrow-icon">→</div>
+                <div class="stat-val stat-val--after" style="font-size:15px; letter-spacing:0.06em;">CONTENT PACKAGE</div>
+              </div>
+              <p class="stat-label">automated content production</p>
             </div>
             <div class="portfolio-body">
-              <p class="portfolio-tag">AI Follow-Up</p>
-              <h3 class="portfolio-title">Lead Re-Engagement Sequence — Off-Plan Developer</h3>
-              <p class="portfolio-desc">200+ leads sat in a spreadsheet with no follow-up. Built a personalized AI email sequence that re-engaged cold leads based on their original inquiry — no manual writing, no bulk blasts.</p>
+              <p class="portfolio-tag">Content Automation</p>
+              <h3 class="portfolio-title">AI Content Workflow — Marketing Team</h3>
+              <p class="portfolio-desc">A text or voice request in Telegram becomes a complete content package: AI interprets the request, writes the caption, generates the visual, saves the assets, and delivers everything back to the user automatically. The workflow also handles file organization and delivery, so the result is not just generation — it's an end-to-end production process.</p>
             </div>
           </div>
 
           <div class="portfolio-card">
             <div class="portfolio-stat">
-              <div class="stat-big">0</div>
-              <p class="stat-label">missed calls lost to voicemail after hours</p>
+              <div class="stat-before-after">
+                <div class="stat-val" style="font-size:15px; letter-spacing:0.06em;">INQUIRY</div>
+                <div class="stat-arrow-icon">→</div>
+                <div class="stat-val stat-val--after" style="font-size:15px; letter-spacing:0.06em;">MATCHES</div>
+              </div>
+              <p class="stat-label">AI-assisted recommendations</p>
             </div>
             <div class="portfolio-body">
-              <p class="portfolio-tag">Missed-Call Text-Back</p>
-              <h3 class="portfolio-title">After-Hours Recovery System — Lettings Agency</h3>
-              <p class="portfolio-desc">Agency was losing leads every evening and weekend when no one answered. Built an instant SMS follow-up triggered within 30 seconds of a missed call — re-engaging the lead before they contacted a competitor.</p>
-            </div>
-          </div>
-
-          <div class="portfolio-card">
-            <div class="portfolio-stat">
-              <div class="stat-big"><span class="stat-big-arrow">↓</span>8 hrs</div>
-              <p class="stat-label">saved per week on viewing coordination</p>
-            </div>
-            <div class="portfolio-body">
-              <p class="portfolio-tag">Appointment Automation</p>
-              <h3 class="portfolio-title">Viewing Booking Flow — Property Sales Team</h3>
-              <p class="portfolio-desc">Sales team was spending hours coordinating viewings by email. Built an automated booking flow: lead submits form → available slots sent instantly → confirmation and reminders triggered → CRM updated on booking.</p>
+              <p class="portfolio-tag">AI Matching</p>
+              <h3 class="portfolio-title">AI Lead Matching — Property Advisory Team</h3>
+              <p class="portfolio-desc">An incoming buyer inquiry is interpreted by AI, matched against available inventory, and turned into relevant property recommendations before the sales conversation begins. The team gets context faster and avoids repetitive manual searching. The workflow takes structured buyer information, applies matching logic, and delivers recommendations into the sales process.</p>
             </div>
           </div>
 
@@ -1472,7 +1507,7 @@
 <section id="contact">
   <div class="container">
     <div class="contact-wrapper">
-      <h2 class="contact-title" style="font-size: clamp(20px, 3vw, 46px);">What could be working smarter already?</h2>
+      <h2 class="contact-title" style="font-size: clamp(20px, 3vw, 46px);">What could AI be doing for your business?</h2>
       <p class="contact-sub">Tell me what you're working through and we can figure out where AI tools or systems could actually make a difference.</p>
       <div class="contact-form-card">
         <form class="contact-form" onsubmit="handleSubmit(event)">
@@ -1484,16 +1519,16 @@
             </div>
             <div class="form-group">
               <label>Email address</label>
-              <input type="email" name="email" placeholder="jane@agency.com" autocomplete="email" required>
+              <input type="email" name="email" placeholder="jane@company.com" autocomplete="email" required>
             </div>
           </div>
           <div class="form-group">
-            <label>Your company or agency</label>
-            <input type="text" name="company" placeholder="Acme Realty" autocomplete="organization">
+            <label>Your company</label>
+            <input type="text" name="company" placeholder="Acme Co." autocomplete="organization">
           </div>
           <div class="form-group">
             <label>Message</label>
-            <textarea id="contact-message" name="message" placeholder="What's taking too much time, creating friction, or not working as well as you think it could?"></textarea>
+            <textarea id="contact-message" name="message" placeholder="What are you trying to improve, understand, or do differently? Tell me where AI is already being used, if anywhere, and anything you think could be working better."></textarea>
           </div>
           <button type="submit" class="form-submit">Get started →</button>
           <p class="form-note"><span class="online-dot"></span>You'll hear from me within 24 hours. No sales pitch — just a straight conversation about where AI can help.</p>
@@ -1539,31 +1574,36 @@
       <div class="story-text">
         <h3 class="modal-title">My story & approach</h3>
         <div class="story-content">
-          <h4 class="story-subhead">I build systems because I've lived the operational chaos</h4>
-          <p>Before moving into AI automation, I spent years building and launching technology products across real estate, SaaS, mobile apps, hardware-integrated platforms, and e-commerce.</p>
-          <p>I founded Dynamiqa Solutions, a product and services tech company, where I led the development and launch of multiple digital products — from environmental telemetry and fleet tracking platforms to mobile apps, IoT-connected systems, and interactive web applications.</p>
-          <p>That experience taught me one thing very clearly: most businesses do not suffer from a lack of tools. They suffer from disconnected tools, unclear processes, manual follow-ups, and leads falling through the cracks.</p>
+          <h4 class="story-subhead">I've been on the operator side</h4>
+          <p>Before Spectertime, I spent years building and running very different kinds of businesses.</p>
+          <p>I founded and exited a residential development company, where I worked across land acquisition, fundraising, development, sales, and investor relationships.</p>
+          <p>I later moved into technology, co-founding Dynamiqa Solutions and spending years building and launching software products across SaaS, mobile, IoT-connected systems, property technology, and interactive web applications.</p>
+          <p>I've also operated businesses outside tech, including e-commerce and customer-facing operations, which meant dealing with the same realities most owners face: customers, teams, suppliers, sales, processes, and things that somehow still have to get done manually.</p>
 
-          <h4 class="story-subhead">Real estate, technology, and automation</h4>
-          <p>My background in real estate started before tech. I founded and exited a residential development company, where I worked across land acquisition, capital raising, development management, sales, and investor communication.</p>
-          <p>Later, through Frontvisual, I worked on interactive property marketing technology for real estate developers and property owners — helping turn complex property projects into more visual, engaging, and easier-to-understand digital experiences.</p>
-          <p>That combination shaped the way I look at automation today. I do not see it as "adding AI" for the sake of it. I see it as building practical systems that help real estate businesses respond faster, qualify leads better, follow up consistently, and create a more professional client experience.</p>
+          <h4 class="story-subhead">That changed how I look at AI</h4>
+          <p>Most established businesses were built before today's AI capabilities existed.</p>
+          <p>They already have people, processes, software, and ways of working that evolved over years. At the same time, there is now an entirely new world of AI tools, agents, automation, and capabilities opening up around them.</p>
+          <p>The difficult part isn't realizing AI is powerful.</p>
+          <p>It's figuring out what any of it should actually mean for your business without creating unnecessary complexity or disrupting what already works.</p>
+          <p>That is the gap I work in.</p>
+          <p>My job is to bring those two worlds together in a way that creates leverage for the specific business and workflow.</p>
 
-          <h4 class="story-subhead">My approach is simple: strategy first, tools second</h4>
-          <p>I do not start with software. I start with the business process.</p>
-          <p>Before building anything, I look at how leads come in, where they get lost, what follow-up is missing, what the client journey looks like, and which repetitive tasks are taking too much time.</p>
-          <p>Only then do I design the right system — using automation workflows, CRM pipelines, email sequences, forms, funnels, AI assistants, and integrations.</p>
-          <p>The goal is not to make things complicated. The goal is to make the business run cleaner, faster, and with less manual work.</p>
+          <h4 class="story-subhead">My approach is simple: business first, AI second</h4>
+          <p>I don't start by asking what we can automate.</p>
+          <p>I start by understanding how the work actually happens.</p>
+          <p>Where does time disappear? What gets repeated? Where does information get lost? What frustrates the team? What already works well? What are you using AI for today?</p>
+          <p>Only then do I look at the options.</p>
+          <p>Sometimes the answer is an existing tool. Sometimes the process needs to change first. Sometimes you and your team need help using AI more effectively. Sometimes automation makes sense. Sometimes something needs to be built. And sometimes the right answer is to leave it alone.</p>
 
-          <h4 class="story-subhead">Built for real business use</h4>
-          <p>I focus on automations that are practical, measurable, and directly connected to revenue or operational efficiency.</p>
-          <p>That can include lead capture systems, qualification flows, CRM automation, email follow-ups, appointment workflows, internal notifications, client onboarding, document collection, and AI-assisted communication.</p>
-          <p>Every system should answer one question: does this help the business save time, convert more leads, or operate more professionally?</p>
+          <h4 class="story-subhead">Strategy when you need it. Technical depth when it matters.</h4>
+          <p>I'm not limited to giving recommendations.</p>
+          <p>When implementation makes sense, I can work across AI tools, automation platforms, CRM systems, APIs, databases, voice and messaging tools, knowledge systems, and custom workflows.</p>
+          <p>That means I can recommend a simple off-the-shelf solution when that's enough, but I can also go much deeper when the business case justifies it.</p>
+          <p>The technology is not the product. The outcome for the business is.</p>
 
-          <h4 class="story-subhead">Why I work this way</h4>
-          <p>I have been on the founder side, the product side, the real estate side, and the sales side. I know how easy it is to buy another tool and still feel like nothing is actually working together.</p>
-          <p>My role is to connect the dots.</p>
-          <p>I help real estate professionals and businesses turn scattered processes into clear, automated systems that remove unnecessary manual work, improve follow-up, and create more space for sales, client relationships, and growth.</p>
+          <h4 class="story-subhead">What I care about</h4>
+          <p>AI should do at least one meaningful thing for the business: save time, make or protect revenue, improve the customer or employee experience, or make the operation easier to run.</p>
+          <p>If it doesn't, it probably doesn't belong there.</p>
         </div>
       </div>
     </div>
@@ -1829,9 +1869,9 @@
   <div class="modal" style="max-width: 780px;">
     <button class="modal-close" onclick="closeModal('modal-consulting')">✕</button>
     <div class="modal-body">
-      <p class="modal-eyebrow" style="text-align: center;">Consulting session</p>
-      <h3 class="modal-title" style="text-align: center;">Find where AI can actually help</h3>
-      <p class="modal-desc" style="margin-bottom: 28px; text-align: center;">Whether you're evaluating a specific AI idea or simply want to understand what could improve your business, tell me what you're working through.</p>
+      <p class="modal-eyebrow" style="text-align: center;">AI Consulting</p>
+      <h3 class="modal-title" style="text-align: center;">Find where AI can create real leverage.</h3>
+      <p class="modal-desc" style="margin-bottom: 28px; text-align: center;">Whether you're just starting to explore AI or already using it and want to go further, tell me a little about your business and what you're trying to improve.</p>
       <form id="consulting-form" class="contact-form" onsubmit="handleConsultingSubmit(event)">
         <div class="form-row">
           <div class="form-group">
@@ -1840,16 +1880,16 @@
           </div>
           <div class="form-group">
             <label for="c-email">Email address</label>
-            <input type="email" id="c-email" name="email" placeholder="jane@agency.com" required>
+            <input type="email" id="c-email" name="email" placeholder="jane@company.com" required>
           </div>
         </div>
         <div class="form-group">
-          <label for="c-company">Your company or agency</label>
-          <input type="text" id="c-company" name="company" placeholder="Acme Realty">
+          <label for="c-company">Your company</label>
+          <input type="text" id="c-company" name="company" placeholder="Acme Co.">
         </div>
         <div class="form-group">
           <label for="c-message">Brief context</label>
-          <textarea id="c-message" name="message" placeholder="What are you trying to understand, decide, or improve? Share any relevant context, tools you currently use, and the main questions you would like the session to answer." required></textarea>
+          <textarea id="c-message" name="message" placeholder="What are you trying to improve, understand, or do differently? Share any relevant workflows, tools, or AI you're already using." required></textarea>
         </div>
         <button type="submit" class="btn-primary form-submit" id="consulting-submit" style="width: 80%; justify-content: center; padding: 14px 28px; margin-top: 4px; white-space: nowrap;">Explore AI Opportunities →</button>
         <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px; line-height: 1.4; text-align: center;">
