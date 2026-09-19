@@ -82,6 +82,9 @@
   }
   .nav-cta:hover { opacity: 0.8; }
 
+  /* SCROLL ANCHOR OFFSET — keeps fixed nav from covering anchor targets */
+  html { scroll-padding-top: 68px; }
+
   /* SECTIONS */
   section { padding: 100px 24px; }
   .container { max-width: 1200px; margin: 0 auto; }
@@ -756,7 +759,7 @@
   }
 
   /* CONTACT */
-  #contact { background: var(--bg); padding-bottom: 0; scroll-margin-top: 52px; }
+  #contact { background: var(--bg); padding-bottom: 0; }
   .contact-wrapper {
     max-width: 100%; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center;
   }
