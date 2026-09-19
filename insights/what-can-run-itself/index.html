@@ -31,7 +31,7 @@
   a { color: inherit; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transform: translateZ(0); -webkit-transform: translateZ(0); }
   .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 52px; display: flex; align-items: center; position: relative; }
   .nav-logo { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; text-decoration: none; color: var(--text); }
   .nav-links { display: flex; list-style: none; gap: 24px; position: absolute; left: 50%; transform: translateX(-50%); }
