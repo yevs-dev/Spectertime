@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insights — Spectertime</title>
+<title>Insights - Spectertime</title>
 <meta name="description" content="Practical thinking on AI, automation, and how to apply them in real business operations.">
 <link rel="canonical" href="https://spectertime.ai/insights/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://spectertime.ai/insights/">
-<meta property="og:title" content="Insights — Spectertime">
+<meta property="og:title" content="Insights - Spectertime">
 <meta property="og:description" content="Practical thinking on AI, automation, and how to apply them in real business operations.">
 <meta property="og:image" content="https://spectertime.ai/og-image.png">
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Insights — Spectertime">
+<meta name="twitter:title" content="Insights - Spectertime">
 <meta name="twitter:description" content="Practical thinking on AI, automation, and how to apply them in real business operations.">
 <meta name="twitter:image" content="https://spectertime.ai/og-image.png">
 
@@ -56,16 +56,16 @@
   }
   .nav-inner {
     max-width: 1200px; margin: 0 auto; padding: 0 28px;
-    height: 52px; display: flex; align-items: center; justify-content: space-between;
+    height: 52px; display: flex; align-items: center; position: relative;
   }
   .nav-logo { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; color: var(--text); text-decoration: none; }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
   .nav-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover, .nav-links a.active { color: var(--text); }
   .nav-cta {
     font-size: 14px; font-weight: 500; padding: 8px 18px;
     background: var(--text); color: #fff; border-radius: 980px;
-    text-decoration: none; transition: opacity 0.2s;
+    text-decoration: none; transition: opacity 0.2s; margin-left: auto;
   }
   .nav-cta:hover { opacity: 0.8; }
 
@@ -105,7 +105,7 @@
     margin-bottom: 20px;
   }
   .page-subtitle {
-    font-size: 18px; color: var(--text-muted); max-width: 520px; line-height: 1.6;
+    font-size: 18px; color: var(--text-muted); max-width: 900px; line-height: 1.6; white-space: nowrap;
   }
 
   /* INSIGHTS GRID */
@@ -129,29 +129,25 @@
   }
   .insight-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
 
-  .insight-card-img {
-    width: 100%; aspect-ratio: 16/9;
-    background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
+  .insight-card-header {
+    background: #1d1d1f;
+    padding: 20px 24px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 140px;
   }
-  .insight-card-img-inner {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 500; letter-spacing: 0.05em;
-    text-transform: uppercase; color: var(--text-faint);
+  .insight-card--featured .insight-card-header { min-height: 180px; }
+  .insight-header-title {
+    font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25;
+    color: #ffffff;
   }
+  .insight-card--featured .insight-header-title { font-size: 28px; }
 
-  .insight-card-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+  .insight-card-body { padding: 24px 28px 28px; flex: 1; display: flex; flex-direction: column; }
   .insight-tag {
-    font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--text-faint); margin-bottom: 12px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 0;
   }
-  .insight-title {
-    font-size: 19px; font-weight: 600; letter-spacing: -0.3px; line-height: 1.3;
-    color: var(--text); margin-bottom: 12px;
-  }
+  .insight-title { display: none; }
   .insight-desc {
     font-size: 14px; color: var(--text-muted); line-height: 1.6; flex: 1;
   }
@@ -184,20 +180,14 @@
   }
 
   /* FOOTER */
-  footer {
-    background: var(--bg); border-top: 1px solid var(--border);
-    padding: 40px 24px;
-  }
-  .footer-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; flex-direction: column; align-items: center; gap: 20px;
-  }
-  .footer-logo { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; }
-  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-  .footer-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  footer { background: var(--white); border-top: 1px solid var(--border); padding: 40px 24px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-logo { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+  .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--text); }
-  .footer-divider { width: 100%; height: 1px; background: var(--border); }
-  .footer-copy { font-size: 13px; color: var(--text-faint); }
+  .footer-divider { display: none; }
+  .footer-copy { font-size: 12px; color: var(--text-faint); }
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
@@ -208,10 +198,24 @@
     .nav-links { display: none; }
     .nav-cta { display: none; }
     .mobile-menu-btn { display: flex; }
-    .insights-grid { grid-template-columns: 1fr; }
+    .insights-section { padding: 40px 16px 60px; }
+    .insights-grid { grid-template-columns: 1fr; width: 100%; }
     .insight-card--featured { grid-column: span 1; }
-    .page-title { font-size: 40px; }
+    .insight-card--featured .insight-card-header { min-height: 120px; }
+    .insight-card--featured .insight-header-title { font-size: 20px; }
+    .insight-header-title { font-size: 18px; }
+    .insight-card-header { min-height: 110px; padding: 16px 18px; }
+    .insight-card-body { padding: 16px 18px 20px; }
+    .insight-desc { font-size: 13px; }
+    .insight-meta { margin-top: 12px; padding-top: 12px; }
+    .page-header { padding: 72px 24px 40px; }
+    .page-title { font-size: 32px; }
+    .page-subtitle { font-size: 15px; white-space: normal; }
+    .page-eyebrow { margin-bottom: 10px; }
   }
+
+  /* Initial hidden state for load-in animation */
+  .page-eyebrow, .page-title, .page-subtitle, .insight-card { opacity: 0; transform: translateY(18px); }
 </style>
 </head>
 <body>
@@ -246,9 +250,9 @@
 
 <div class="page-header">
   <div class="container">
-    <p class="page-eyebrow">Spectertime</p>
-    <h1 class="page-title">Insights</h1>
-    <p class="page-subtitle">Practical thinking on AI, automation, and how to apply them in real business operations.</p>
+    <p class="page-eyebrow">Insights</p>
+    <h1 class="page-title">AI that actually does the work.</h1>
+    <p class="page-subtitle">Practical lessons from building AI systems around real business operations - what works, what breaks, and where the leverage really comes from.</p>
   </div>
 </div>
 
@@ -257,81 +261,31 @@
     <div class="insights-grid">
 
       <!-- Featured article -->
-      <a class="insight-card insight-card--featured" href="#">
-        <div class="insight-card-img">
-          <div class="insight-card-img-inner">Coming soon</div>
+      <a class="insight-card insight-card--featured" href="/insights/what-can-run-itself/">
+        <div class="insight-card-header">
+          <p class="insight-tag">Strategy</p>
+          <h2 class="insight-header-title">What Can Actually Run Itself in a Business With AI in 2026?</h2>
         </div>
         <div class="insight-card-body">
-          <p class="insight-tag">Strategy</p>
-          <h2 class="insight-title">Where AI actually belongs in your business — and where it doesn't</h2>
-          <p class="insight-desc">Most businesses approach AI backwards. They start with a tool and look for a problem. This is about starting with the work and finding where AI creates real leverage.</p>
+          <p class="insight-desc">A defined piece of work that can understand what is happening, decide what has to happen next, and take action across your systems - until it reaches an outcome or hands off to a person.</p>
           <div class="insight-meta">
-            <span>Yev Specter</span>
-            <span class="insight-read-time">5 min read</span>
+            <span>Sep 19, 2026</span>
+            <span class="insight-read-time">7 min read</span>
           </div>
         </div>
       </a>
 
       <!-- Article 2 -->
-      <a class="insight-card" href="#">
-        <div class="insight-card-img">
-          <div class="insight-card-img-inner">Coming soon</div>
-        </div>
-        <div class="insight-card-body">
-          <p class="insight-tag">Automation</p>
-          <h2 class="insight-title">Workflow automation vs. custom AI: how to choose</h2>
-          <p class="insight-desc">Not every problem needs a custom build. Here's a framework for deciding when existing tools are enough — and when they're not.</p>
-          <div class="insight-meta">
-            <span>Yev Specter</span>
-            <span class="insight-read-time">4 min read</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Article 3 -->
-      <a class="insight-card" href="#">
-        <div class="insight-card-img">
-          <div class="insight-card-img-inner">Coming soon</div>
-        </div>
-        <div class="insight-card-body">
+      <a class="insight-card" href="/insights/the-guest-asked-reception/">
+        <div class="insight-card-header">
           <p class="insight-tag">Operations</p>
-          <h2 class="insight-title">The questions I ask before touching any AI tool</h2>
-          <p class="insight-desc">Five diagnostic questions that determine whether automation is worth pursuing — or whether the process needs fixing first.</p>
-          <div class="insight-meta">
-            <span>Yev Specter</span>
-            <span class="insight-read-time">3 min read</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Article 4 -->
-      <a class="insight-card" href="#">
-        <div class="insight-card-img">
-          <div class="insight-card-img-inner">Coming soon</div>
+          <h2 class="insight-header-title">The Guest Asked Reception. Reception Asked Three Departments.</h2>
         </div>
         <div class="insight-card-body">
-          <p class="insight-tag">Implementation</p>
-          <h2 class="insight-title">Why most AI implementations fail — and what makes them work</h2>
-          <p class="insight-desc">The technical part is rarely the problem. What breaks AI implementation is almost always the same set of organizational issues.</p>
+          <p class="insight-desc">The guest asked one question. Reception dealt with three departments. That's where one of the most useful applications of AI in hotel operations sits.</p>
           <div class="insight-meta">
-            <span>Yev Specter</span>
-            <span class="insight-read-time">6 min read</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Article 5 -->
-      <a class="insight-card" href="#">
-        <div class="insight-card-img">
-          <div class="insight-card-img-inner">Coming soon</div>
-        </div>
-        <div class="insight-card-body">
-          <p class="insight-tag">Tools</p>
-          <h2 class="insight-title">Make vs. n8n vs. Zapier: what actually matters when choosing</h2>
-          <p class="insight-desc">The comparison that usually gets asked at the start of a project — and the answer is almost never about the tool itself.</p>
-          <div class="insight-meta">
-            <span>Yev Specter</span>
-            <span class="insight-read-time">4 min read</span>
+            <span>Sep 18, 2026</span>
+            <span class="insight-read-time">7 min read</span>
           </div>
         </div>
       </a>
@@ -369,5 +323,38 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
+<script>
+// Fade-in on scroll - same mechanism as homepage
+const _observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+function _revealGroup(selector, { y = 28, dur = 0.7, gap = 80 } = {}) {
+  document.querySelectorAll(selector).forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = `translateY(${y}px)`;
+    el.style.transition = `opacity ${dur}s cubic-bezier(0.25,0.46,0.45,0.94) ${i * gap}ms, transform ${dur}s cubic-bezier(0.25,0.46,0.45,0.94) ${i * gap}ms`;
+    _observer.observe(el);
+  });
+}
+
+// Page header elements stagger in on load (like hero on homepage)
+['.page-eyebrow', '.page-title', '.page-subtitle'].forEach((sel, i) => {
+  const el = document.querySelector(sel);
+  if (!el) return;
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)';
+  setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, 60 + i * 90);
+});
+
+// Scroll reveal for cards
+_revealGroup('.insight-card', { y: 28, gap: 80 });
+</script>
 </body>
 </html>

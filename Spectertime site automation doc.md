@@ -1,29 +1,168 @@
 # Spectertime — Site & Automation System Documentation
 
-_Last updated: 2026-08-12_
+_Last updated: 2026-09-19_
 
 ---
 
 ## Site
 
 **URL:** spectertime.ai  
-**Stack:** Single HTML file → GitHub → Netlify (auto-deploy on push)
+**Stack:** Static HTML/CSS/JS — no framework, no build step → GitHub → Netlify (auto-deploy on push)  
+**Font:** Inter (Google Fonts) — loaded in `<head>` on every page  
+**Color scheme:** Dark background (`#0a0a0a`), off-white text (`#f5f5f0`), faint text (`#888`), border (`#222`), accent (`#c8f547` yellow-green)
 
-**Files:**
-- `spectertime_v3.html` — local working copy in the AI Automation project folder (edit here first)
-- `Spectertime/index.html` — the file Netlify actually serves (git repo copy)
+---
+
+## File Structure
+
+```
+Spectertime/                        ← git repo root (connected to Netlify)
+  index.html                        ← homepage (serves spectertime.ai)
+  insights/
+    index.html                      ← insights listing page (spectertime.ai/insights/)
+    what-can-run-itself/
+      index.html                    ← article 1 (spectertime.ai/insights/what-can-run-itself/)
+    the-guest-asked-reception/
+      index.html                    ← article 2 (spectertime.ai/insights/the-guest-asked-reception/)
+  Spectertime site automation doc.md  ← this file
+```
+
+> The old `spectertime_v3.html` working copy is no longer used. Edit the files in their correct locations (`Spectertime/index.html`, `Spectertime/insights/...`) directly — Claude works on them in the AI Automation project folder which is the git repo.
 
 **Deploy workflow:**
-1. Edit `spectertime_v3.html` locally
-2. Copy to `Spectertime/index.html` (overwrite)
-3. Open GitHub Desktop → commit changes → Push origin
-4. Netlify detects the push and auto-deploys within ~30 seconds
+1. Edit the relevant file(s) in the `Spectertime/` folder
+2. Open GitHub Desktop → commit changes → Push origin
+3. Netlify detects the push and auto-deploys within ~30 seconds
 
 **Git / Netlify:**
 - GitHub repo: `Spectertime/` folder is the repo root, connected to Netlify
-- Netlify build: no build step — deploys `index.html` as a static site
+- Netlify build: no build step — deploys static files as-is
 - Netlify auto-deploy is triggered on every push to the main branch
 - No manual publish step needed
+
+---
+
+## Pages
+
+### Homepage (`index.html`)
+Sections in order: Nav → Hero → Stats ticker → Services → How it works (steps) → About → Insights preview → Contact form → Footer
+
+**Nav CTA:** "Book a 20-min Call" → `/#contact`  
+**Hero:** Avatar image + label + title + subtitle + two CTA buttons  
+**Contact form:** Collects name, email, company, message. Submits via `handleSubmit()` to Make webhook. See Contact Form section below.
+
+### Insights Listing (`insights/index.html`)
+Shows all published article cards. Each card links to its article subfolder (`/insights/what-can-run-itself/` etc.).  
+Page header: eyebrow label + title + subtitle.  
+**Back nav:** "← spectertime.ai" links to homepage root.
+
+### Article: What Can Actually Run Itself (`insights/what-can-run-itself/index.html`)
+Tag: Strategy  
+Author: Yev Specter  
+Content: Long-form article with multiple `<h2>` sections, a comparison table (`.comparison-table`), closing section (`.article-closing`), and CTA block (`.article-cta`).  
+**Article CTA button:** "Book a 20-min Call" → `/#contact` (takes user to homepage contact form section)
+
+### Article: The Guest Asked Reception (`insights/the-guest-asked-reception/index.html`)
+Tag: Operations  
+Author: Yev Specter  
+Same structure as article 1. Longer article (~350 lines of HTML body).
+
+---
+
+## Animation System
+
+All pages share the same scroll-reveal mechanism. It must be kept identical across homepage and all article/listing pages.
+
+### How it works
+
+**1. CSS pre-hide (in `<style>` block in `<head>`):**  
+Header elements that animate on load are hidden before first paint to prevent flash of visible content:
+```css
+/* Homepage */
+.hero-avatar, .hero-label, .hero-title, .hero-sub, .hero-actions { opacity: 0; transform: translateY(18px); }
+
+/* Article pages */
+.article-back, .article-tag, .article-title, .article-byline { opacity: 0; transform: translateY(18px); }
+
+/* Insights listing */
+.page-eyebrow, .page-title, .page-subtitle, .insight-card { opacity: 0; transform: translateY(18px); }
+```
+
+**2. IntersectionObserver (in `<script>` at end of `<body>`):**  
+```javascript
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+```
+Articles use `_observer` (underscore prefix) to avoid naming conflict if homepage JS ever loads on the same page.
+
+**3. `revealGroup()` helper:**  
+Sets elements to `opacity: 0 + translateY` and registers them with the observer. The observer fires immediately for elements already in the viewport, and on scroll for elements below the fold.
+```javascript
+function revealGroup(selector, { y = 28, dur = 0.7, gap = 80 } = {}) {
+  document.querySelectorAll(selector).forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = `translateY(${y}px)`;
+    el.style.transition = `opacity ${dur}s cubic-bezier(0.25,0.46,0.45,0.94) ${i * gap}ms, transform ${dur}s cubic-bezier(0.25,0.46,0.45,0.94) ${i * gap}ms`;
+    observer.observe(el);
+  });
+}
+```
+
+**4. Hero/header stagger (load animation, not scroll):**  
+Elements reveal sequentially on page load, 90ms apart, starting at 60ms:
+```javascript
+['.hero-avatar', '.hero-label', '.hero-title', '.hero-sub', '.hero-actions'].forEach((sel, i) => {
+  const el = document.querySelector(sel);
+  if (!el) return;
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)';
+  setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, 60 + i * 90);
+});
+```
+
+### What gets revealed on each page
+
+**Homepage:**
+```javascript
+revealGroup('.service-card, .step');
+revealGroup('.section-title, .section-sub, .contact-title, .contact-sub', { y: 18, gap: 0 });
+revealGroup('.about-img', { y: 18, gap: 0 });
+revealGroup('.about-title, .about-text', { y: 18, gap: 100 });
+revealGroup('.contact-form-card', { y: 18, gap: 0 });
+```
+
+**Article pages (both articles, using `_revealGroup` / `_observer`):**
+```javascript
+// Header stagger (load animation)
+['.article-back', '.article-tag', '.article-title', '.article-byline'].forEach(...)
+
+// Scroll-reveal for body
+_revealGroup('.article-body > p, .article-body > ol, .article-body > hr, .article-body h2, .article-body h3, .article-body .comparison-table', { y: 18, dur: 0.7, gap: 0 });
+_revealGroup('.article-closing', { y: 18, gap: 0 });
+_revealGroup('.article-cta', { y: 18, gap: 0 });
+```
+
+**Insights listing page (using `_revealGroup` / `_observer`):**
+```javascript
+// Header stagger (load animation)
+['.page-eyebrow', '.page-title', '.page-subtitle'].forEach(...)
+
+// Scroll-reveal for cards
+_revealGroup('.insight-card', { y: 28, gap: 80 });
+```
+
+### Important rules
+- **Never use `getBoundingClientRect()` to filter which elements get observed.** This breaks reveal for elements that happen to be near the viewport edge — just hide everything and let the observer handle it.
+- **CSS pre-hide must match the JS stagger selectors exactly** — otherwise elements flash visible before JS hides them.
+- **Do not add `opacity: 0` in CSS for scroll-reveal elements** (body paragraphs, cards, etc.) — only for load-stagger elements. JS sets `opacity: 0` on those just before the observer is registered, so no flash occurs.
+- The `{ threshold: 0.1 }` setting on the observer means 10% of the element must be visible to trigger reveal. This is intentional — don't increase it or reveals will trigger too late.
 
 ---
 
