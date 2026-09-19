@@ -1947,14 +1947,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-// Smooth scroll nav
+// Smooth scroll nav — manual offset so nav never covers the target
+const NAV_H = 68;
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
     const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    if (target) {
+      const y = target.getBoundingClientRect().top + window.scrollY - NAV_H;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   });
 });
+
+// Clean URL hash after page loads so reloads don't re-scroll to contact
+if (window.location.hash) {
+  setTimeout(() => history.replaceState(null, '', window.location.pathname), 600);
+}
 
 // Fade-in on scroll
 const observer = new IntersectionObserver((entries) => {
