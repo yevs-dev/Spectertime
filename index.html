@@ -1960,18 +1960,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// On cross-page arrival (e.g. article → /#contact): correct scroll with nav offset, then clean URL
+// On cross-page arrival (e.g. article → /#contact): correct scroll after browser's native hash scroll
 if (window.location.hash) {
-  const _hashTarget = document.querySelector(window.location.hash);
-  if (_hashTarget) {
-    // Double rAF ensures layout is settled before we measure and scroll
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      const _y = _hashTarget.getBoundingClientRect().top + window.scrollY - NAV_H;
-      window.scrollTo({ top: Math.max(0, _y), behavior: 'instant' });
-    }));
-  }
-  // Clean the hash so page reloads go back to top, not contact
-  setTimeout(() => history.replaceState(null, '', window.location.pathname), 800);
+  window.addEventListener('load', () => {
+    const _hashTarget = document.querySelector(window.location.hash);
+    if (_hashTarget) {
+      // Browser has already scrolled to hash by 'load' — measure absolute position and re-scroll with nav offset
+      const _absTop = _hashTarget.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: Math.max(0, _absTop - NAV_H), behavior: 'instant' });
+    }
+    // Clean the hash so page reloads go back to top, not contact
+    setTimeout(() => history.replaceState(null, '', window.location.pathname), 200);
+  });
 }
 
 // Fade-in on scroll
