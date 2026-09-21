@@ -63,11 +63,12 @@
     isolation: isolate;
   }
   .nav-inner {
+    position: relative;
     max-width: 1200px; margin: 0 auto; padding: 0 28px;
     height: 52px; display: flex; align-items: center; justify-content: space-between;
   }
   .nav-logo { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; color: var(--text); text-decoration: none; }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 28px; list-style: none; }
   .nav-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--text); }
   .nav-cta {
