@@ -52,7 +52,7 @@
     background: rgba(255,255,255,0.82);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
     transform: translateZ(0);
     will-change: transform;
     -webkit-backface-visibility: hidden;
@@ -64,13 +64,13 @@
     max-width: 1200px; margin: 0 auto; padding: 0 28px;
     height: 52px; display: flex; align-items: center; justify-content: space-between;
   }
-  .nav-logo { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; color: var(--text); text-decoration: none; }
+  .nav-logo { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; color: #1d1d1f; text-decoration: none; }
   .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-links a { font-size: 14px; color: #6e6e73; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: #1d1d1f; }
   .nav-cta {
-    font-size: 14px; font-weight: 500; line-height: 1; padding: 8px 18px;
-    background: var(--text); color: #fff; border-radius: 980px;
+    font-size: 14px; font-weight: 500; padding: 8px 18px;
+    background: #1d1d1f; color: #fff; border-radius: 980px;
     text-decoration: none; transition: opacity 0.2s; white-space: nowrap;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
