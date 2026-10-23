@@ -332,7 +332,8 @@
 
   /* CARD HOVER OVERLAY + WATCH BUTTON */
   body.modal-is-open {
-    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
     overscroll-behavior: none;
   }
   .modal-body {
@@ -1375,7 +1376,7 @@
         <div class="step-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg></div>
         <h3 class="step-title">AI Opportunity Review <span class="step-info-icon" data-tooltip="If the implementation opportunity is already clear, we skip this step and go straight to scope.">ⓘ</span></h3>
         <p class="step-desc">If the opportunity needs a deeper look, we spend 45 minutes going through the relevant workflows, tools, and pain points. I then analyze the options and come back with clear recommendations on what to act on first - and what to leave alone.</p>
-        <p class="step-price">$250</p>
+        <p class="step-price">$500</p>
         <p class="step-meta">Diagnostic + analysis + review call</p>
       </div>
       <div class="step">
@@ -1724,10 +1725,8 @@ function _blockBgScroll(e) {
 function openModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
-  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-  document.body.style.paddingRight = scrollbarWidth + 'px';
-  const nav = document.querySelector('nav');
-  if (nav) nav.style.paddingRight = scrollbarWidth + 'px';
+  const scrollY = window.scrollY;
+  document.body.style.top = `-${scrollY}px`;
   document.body.classList.add('modal-is-open');
   overlay.classList.add('is-open');
   overlay.querySelectorAll('iframe[data-src]').forEach(f => {
@@ -1744,10 +1743,10 @@ function closeModal(id) {
   document.removeEventListener('touchstart', _onTouchStart, { passive: true });
   document.removeEventListener('touchmove', _blockBgScroll, { passive: false });
   setTimeout(() => {
+    const scrollY = -parseInt(document.body.style.top || '0');
     document.body.classList.remove('modal-is-open');
-    document.body.style.paddingRight = '';
-    const nav = document.querySelector('nav');
-    if (nav) nav.style.paddingRight = '';
+    document.body.style.top = '';
+    window.scrollTo(0, scrollY);
   }, 300);
 }
 document.addEventListener('keydown', e => {
